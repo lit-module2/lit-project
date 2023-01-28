@@ -2,7 +2,15 @@
 
 ## Description
 
-This is a project developed by XXX and YYY as the project for the second module at Ironhack. The purpose of the application is...
+This is a project developed by Alberto Menéndez and Víctor Perdiguer as the project for the second module at Ironhack.
+
+The purpose of the application is to build a social app that allows its users to answer questions about other users anonymously.
+
+The questions will always have other users as its possible answer, single choice only.
+
+The results of these answers are then used to elaborate a leaderboard based on several categories.
+
+Users can also propose new questions so that other users can answer them. These questions will have to be reviewed by the admin team before being allowed on the platform to avoid toxicity.
 
 ---
 
@@ -40,16 +48,25 @@ Substitute this image with an image of your own app wireframes or designs
 
 ## User stories (MVP)
 
-What can the user do with the app?
+Regular users
 - User can sign up and create and account
 - User can login
 - User can log out
-- User can create ...
+- User can delete his account
+- User can answer questions about other users
+- User can view the leaderboard
+- User can write and submit new questions
+
+Admins
+- Admins can view submitted questions
+- Admins can approve/deny submitted questions
 
 ## User stories (Backlog)
 
-- User can upload a profile picture
-- User can ...
+- User can be notified when he's been chosen as the answer to another user's question
+- User can see his history of submitted questions
+- On first login, users are forced to answer a question before doing anything else
+- Users can join different circles with independent questions and leaderboards
 
 ---
 
