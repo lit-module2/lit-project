@@ -11,6 +11,36 @@ router.get('/signup', async (req, res, next) => {
   res.render('auth/signup');
 })
 
+
+// Post signup
+
+router.post("/signup", async function (req, res, next) {
+  const {username, email, password} = req.body;
+  if(!username || !email || !password) {
+    res.render("auth/signup", {error: "Todos los campos son requeridos"});
+    return;
+  }
+
+  // No he metido la parte de Regex, se queda en cuadrar con Victor.
+  try {
+
+    // Usamos el username para encontrar los usuarios.
+    const userInDB = await User.findOne ({username: username});
+    if(userInDB) {
+      res.render("auth/signup", {error: `Ya hay un usuario con el nombre ${username}`});
+      return
+    } else {
+      const salt = await bcrypt.genSalt(saltRounds)
+      const hashedPassword = await bcrypt.hash(password, salt);
+      const user = await User.create ({username, email, hashedPassword});
+      res.render("auth/homepage", user)
+    }
+  } catch (error) {
+    next (error)
+  }
+
+})
+
 // @desc    Displays form view to log in
 // @route   GET /auth/login
 // @access  Public
@@ -21,18 +51,21 @@ router.get('/login', async (req, res, next) => {
 // @desc    Sends user auth data to database to create a new user
 // @route   POST /auth/signup
 // @access  Public
-router.post('/signup', async (req, res, next) => {
-  const { email, password, username } = req.body;
-  // ⚠️ Add validations!
-  try {
-    const salt = await bcrypt.genSalt(saltRounds);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    const user = await User.create({ username, email, hashedPassword });
-    res.render('auth/profile', user)
-  } catch (error) {
-    next(error)
-  }
-});
+
+// Esto estaba dado por Ale pero lo comento para dejar el de arriba.
+
+// router.post('/signup', async (req, res, next) => {
+//   const { email, password, username } = req.body;
+//   // ⚠️ Add validations!
+//   try {
+//     const salt = await bcrypt.genSalt(saltRounds);
+//     const hashedPassword = await bcrypt.hash(password, salt);
+//     const user = await User.create({ username, email, hashedPassword });
+//     res.render('auth/profile', user)
+//   } catch (error) {
+//     next(error)
+//   }
+// });
 
 // @desc    Sends user auth data to database to authenticate user
 // @route   POST /auth/login

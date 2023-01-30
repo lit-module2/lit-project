@@ -19,7 +19,12 @@ const userSchema = new Schema(
     hashedPassword: {
       type: String,
       required: [true, 'Password is required.']
-    }
+    },
+
+    // Como puedo crear la parte del genero en el modelo?
+    // gender {
+    //   type: 
+    // }
   },
   {
     timestamps: true
