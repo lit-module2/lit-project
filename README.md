@@ -67,6 +67,7 @@ Admins
 - User can see his history of submitted questions
 - On first login, users are forced to answer a question before doing anything else
 - Users can join different circles with independent questions and leaderboards
+- Include different types of questions
 
 ---
 
