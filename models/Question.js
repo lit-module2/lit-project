@@ -11,14 +11,12 @@ const questionSchema = new Schema(
     },
     // Categories where an answer to the question counts positively
     positiveCategory: {
-        type: [Object],
-        trim: true,
+        type: [Schema.Types.ObjectId],
         required: true,
     },
     // Categories where an answer to the question counts negatively
     negativeCategory: {
-        type: [Object],
-        trim: true,
+        type: [Schema.Types.ObjectId],
         required: true
     },
     // true --> question apt to everyone, false --> sensitive content
@@ -34,7 +32,7 @@ const questionSchema = new Schema(
     },
     // author of the question, taken from the user session ID
     _author: {
-        type: Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId
     }
   },
   {
