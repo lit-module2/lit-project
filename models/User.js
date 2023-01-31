@@ -1,7 +1,6 @@
 const { Schema, model } = require('mongoose');
  
 const userSchema = new Schema(
-  // Add whichever fields you need for your app
   {
     username: {
       type: String,
@@ -16,15 +15,23 @@ const userSchema = new Schema(
       lowercase: true,
       trim: true
     },
+    phone: {
+      type: Number,
+      required: false,
+      trim: true
+    },
+    dateOfBirth: {
+      type: Date,
+      required: true
+    },
     hashedPassword: {
       type: String,
       required: [true, 'Password is required.']
     },
-
-    // Como puedo crear la parte del genero en el modelo?
-    // gender {
-    //   type: 
-    // }
+    gender: {
+      type: String,
+      required: true
+    }
   },
   {
     timestamps: true

@@ -1,23 +1,23 @@
 const { Schema, model } = require('mongoose');
+const User = require('./User');
  
 const questionSchema = new Schema(
   {
-    // Question text
     question: {
       type: String,
       trim: true,
       required: [true, 'You must submit a question.'],
       unique: true
     },
-    // Categories where an answer to the question counts positively
-    positiveCategory: {
-        type: [Schema.Types.ObjectId],
+    category: {
+        type: String,
+        enum: ['Baldness', 'Atractiveness', 'Style', 'Programming skills'],
         required: true,
     },
-    // Categories where an answer to the question counts negatively
-    negativeCategory: {
-        type: [Schema.Types.ObjectId],
-        required: true
+    // choose whether the question has a positive affect on its category or a negative one
+    effect: {
+      type: Boolean,
+      required: true
     },
     // true --> question apt to everyone, false --> sensitive content
     safe: {
@@ -25,14 +25,13 @@ const questionSchema = new Schema(
         default: true,
         required: true
     },
-    // admin approved
     _approved: {
         type: Boolean,
         default: false
     },
-    // author of the question, taken from the user session ID
     _author: {
-        type: Schema.Types.ObjectId
+        type: Schema.Types.ObjectId,
+        ref: User
     }
   },
   {
