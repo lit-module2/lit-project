@@ -1,28 +1,25 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
-const Question = require('../models/Question');
-const User = require('../models/User');
-
 
 const userAnswerSchema = new Schema(
   {
     questionId: {
       type: Schema.Types.ObjectId,
-      ref: Question,
+      ref: "Question",
       required: true
     },
     userAsked: {
         type: Schema.Types.ObjectId,
-        ref: User,
+        ref: "User",
         required: true,
     },
     userAnswered: {
         type: Schema.Types.ObjectId,
-        ref: User,
+        ref: "User",
         required: true,
     },
     usersIgnored: {
         type: [Schema.Types.ObjectId],
-        ref: User,
+        ref: "User",
         required: true,
     }
   },

@@ -1,5 +1,4 @@
 const { Schema, model } = require('mongoose');
-const User = require('./User');
  
 const questionSchema = new Schema(
   {
@@ -31,7 +30,7 @@ const questionSchema = new Schema(
     },
     _author: {
         type: Schema.Types.ObjectId,
-        ref: User
+        ref: "User"
     }
   },
   {
