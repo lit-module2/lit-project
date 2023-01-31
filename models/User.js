@@ -21,8 +21,8 @@ const userSchema = new Schema(
       trim: true
     },
     dateOfBirth: {
-      type: Date,
-      required: true
+      type: String,
+      required: false
     },
     hashedPassword: {
       type: String,
@@ -30,7 +30,7 @@ const userSchema = new Schema(
     },
     gender: {
       type: String,
-      required: true
+      required: false
     },
     role: {
       type: String,

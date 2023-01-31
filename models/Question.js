@@ -1,5 +1,5 @@
 const { Schema, model } = require('mongoose');
- 
+
 const questionSchema = new Schema(
   {
     question: {
@@ -10,7 +10,7 @@ const questionSchema = new Schema(
     },
     category: {
         type: String,
-        enum: ['Baldness', 'Atractiveness', 'Style', 'Programming skills'],
+        enum: ['Baldness', 'Attractiveness', 'Style', 'Programming skills'],
         required: true,
     },
     // choose whether the question has a positive affect on its category or a negative one

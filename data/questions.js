@@ -28,3 +28,5 @@ const seedQuestions = [
         _approved: true,
     },
 ]
+
+module.exports = seedQuestions;
