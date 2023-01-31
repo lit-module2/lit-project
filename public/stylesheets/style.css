@@ -1,5 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap');
+
+html {
+  font-family: 'Bowlby One SC';
+  font-size: 16px;
+}
+
 body {
   padding: 0;
   margin: 0;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+#main {
+  background-image: linear-gradient(black, rgb(56, 0, 56), rgb(134, 10, 20), red, goldenrod);
+  background-repeat: no-repeat;
+  background-size: contain;
+  height:90vh;
+}
+
+img {
+  width:110px;
+}
+
+h1 {
+  font-size:2.3rem;
+  color:white;
+}
+
+
+
+header, nav {
+  height:10vh;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: space-around;
+  background-color:black;
+}
+
+nav {
+  position:fixed;
+  bottom:0;
+  width:100%;
+  background-color:rgba(255, 255, 255, 0)
+}
+
+svg {
+  fill-rule:evenodd;
+  fill:white;
+}
+
+header > svg {
+  width:8vmin;
+}
+
+nav > svg {
+  width:10vmin;
+  fill:black;
+}
+
+nav > svg:hover {
+  fill-rule:nonzero;
+  fill:black;
 }
