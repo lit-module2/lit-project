@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Question = require('../models/Question');
+const UserAnswer = require('../models/UserAnswer');
 
 
 // @desc    App home page
@@ -8,6 +9,7 @@ const Question = require('../models/Question');
 router.get('/', async function (req, res, next) {
   try {
     const questions = await Question.find({});
+    console.log("preguntas", questions);
     const randomQuestion = questions[Math.floor(Math.random() * questions.length )];
     res.render('index', { randomQuestion })
   } catch (error) {
@@ -18,11 +20,12 @@ router.get('/', async function (req, res, next) {
 // @desc    App home page, user answers question
 // @route   Post /questionId
 // @access  User with user role only
-router.post('/:questionId', isUserLoggedIn, async function (req, res, next) {
+router.post('/:questionId', async function (req, res, next) {
   try {
-    const user = req.session.currentUser;
+    const userAsked = req.session.currentUser;
     const { questionId } = req.params;
-    const { userAnswered,  userIgnored} = req.body;
+    const { userAnswered,  usersIgnored} = req.body;
+    await UserAnswer.create({ questionId, userAsked, userAnswered, usersIgnored });
   } catch (error) {
     next(error)
   }

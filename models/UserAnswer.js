@@ -1,5 +1,8 @@
 const { Schema, model, SchemaTypes } = require('mongoose');
- 
+const Question = require('../models/Question');
+const User = require('../models/User');
+
+
 const userAnswerSchema = new Schema(
   {
     questionId: {
