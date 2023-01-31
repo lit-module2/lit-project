@@ -6,10 +6,6 @@ html {
 }
 
 body {
-
-}
-
-body {
   padding: 0;
   margin: 0;
   background-image: linear-gradient(black, rgb(56, 0, 56), rgb(134, 10, 20), rgb(255, 0, 0), goldenrod);
