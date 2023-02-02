@@ -27,7 +27,7 @@ body {
 .main {
   background-color:gold;
   padding:10vh 0;
-  height:80vh;
+  min-height:80vh;
 }
 
 img {
