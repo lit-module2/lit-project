@@ -18,9 +18,9 @@ router.post("/signup", async function (req, res, next) {
   const {username, email, password} = req.body;
   if(!username || !email || !password) {
     res.render("auth/signup", {error: "Todos los campos son requeridos"});
+    console.log(hashedPassword)
     return;
   }
-
   // No he metido la parte de Regex, se queda en cuadrar con Victor.
   try {
 
@@ -40,6 +40,49 @@ router.post("/signup", async function (req, res, next) {
   }
 
 })
+
+// @desc    Displays the register page and form
+// @route   GET /auth/signup
+// @access  Public
+router.get ("/register", (req, res, next) => {
+  res.render("auth/register")
+}) 
+
+router.post ("/register", async (req, res, next) => {
+  const { username, email, password, repeatedPassword } = req.body;
+  try {
+    const userInDB = await User.findOne({ email: email });
+    if (userInDB) {
+      res.render('auth/signup', { error: `There already is a user with email ${email}` });
+      return;
+    } else {
+      const salt = await bcrypt.genSalt(saltRounds);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      const user = await User.create({ username, email, hashedPassword });
+      res.render('auth/profile', user);
+    }
+  } catch (error) {
+    next(error)
+  }
+});
+
+// Profile test Marina.
+
+
+router.get ("/profile", (req, res, next) => {
+  res.render("auth/profile")
+}) 
+
+router.post ("profile", (req, res, next) => {
+  const {username} = req.body;
+  const {email} = req.body;
+  const {hashedPassword} = req.body;
+
+  const user = req.session.currentUser;
+
+});
+
+
 
 // @desc    Displays form view to log in
 // @route   GET /auth/login
