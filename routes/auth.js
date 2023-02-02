@@ -48,14 +48,22 @@ router.get ("/register", (req, res, next) => {
   res.render("auth/register")
 }) 
 
-router.post ("register", (req, res, next) => {
-  const {username} = req.body;
-  const {email} = req.body;
-  const {hashedPassword} = req.body;
-  console.log(hashedPassword)
-
-  const user = req.session.currentUser;
-
+router.post ("/register", async (req, res, next) => {
+  const { username, email, password, repeatedPassword } = req.body;
+  try {
+    const userInDB = await User.findOne({ email: email });
+    if (userInDB) {
+      res.render('auth/signup', { error: `There already is a user with email ${email}` });
+      return;
+    } else {
+      const salt = await bcrypt.genSalt(saltRounds);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      const user = await User.create({ username, email, hashedPassword });
+      res.render('auth/profile', user);
+    }
+  } catch (error) {
+    next(error)
+  }
 });
 
 // Profile test Marina.
