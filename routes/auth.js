@@ -18,6 +18,7 @@ router.post("/signup", async function (req, res, next) {
   const {username, email, password} = req.body;
   if(!username || !email || !password) {
     res.render("auth/signup", {error: "Todos los campos son requeridos"});
+    console.log(hashedPassword)
     return;
   }
 
@@ -40,6 +41,40 @@ router.post("/signup", async function (req, res, next) {
   }
 
 })
+
+// Register POST and GET 
+
+router.get ("/register", (req, res, next) => {
+  res.render("auth/register")
+}) 
+
+router.post ("register", (req, res, next) => {
+  const {username} = req.body;
+  const {email} = req.body;
+  const {hashedPassword} = req.body;
+  console.log(hashedPassword)
+
+  const user = req.session.currentUser;
+
+});
+
+// Profile test Marina.
+
+
+router.get ("/profile", (req, res, next) => {
+  res.render("auth/profile")
+}) 
+
+router.post ("profile", (req, res, next) => {
+  const {username} = req.body;
+  const {email} = req.body;
+  const {hashedPassword} = req.body;
+
+  const user = req.session.currentUser;
+
+});
+
+
 
 // @desc    Displays form view to log in
 // @route   GET /auth/login
