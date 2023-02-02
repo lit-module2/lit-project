@@ -7,33 +7,42 @@ const saltRounds = 10;
 // @desc    Displays form view to sign up
 // @route   GET /auth/signup
 // @access  Public
-router.get('/signup', async (req, res, next) => {
-  res.render('auth/signup');
+
+// Get login
+
+router.get('/login', (req, res, next) => {
+  res.render('auth/login');
 })
 
 
-// Post signup
+// Post login
 
-router.post("/signup", async function (req, res, next) {
-  const {username, email, password} = req.body;
-  if(!username || !email || !password) {
-    res.render("auth/signup", {error: "Todos los campos son requeridos"});
-    console.log(hashedPassword)
+router.post("/login", async function (req, res, next) {
+  const {username, password} = req.body;
+  if(!username ||!password) {
+    res.render("auth/login", {error: "Todos los campos son requeridos"});
     return;
   }
   // No he metido la parte de Regex, se queda en cuadrar con Victor.
   try {
-
     // Usamos el username para encontrar los usuarios.
+
     const userInDB = await User.findOne ({username: username});
-    if(userInDB) {
-      res.render("auth/signup", {error: `Ya hay un usuario con el nombre ${username}`});
-      return
+
+    if(!userInDB) {
+      res.render ("auth/homepage" , {error:`no hay nadie en la base de datos bajo el nombre    ${username}`})
+      return  
     } else {
-      const salt = await bcrypt.genSalt(saltRounds)
-      const hashedPassword = await bcrypt.hash(password, salt);
-      const user = await User.create ({username, email, hashedPassword});
-      res.render("auth/homepage", user)
+      const passwordMatch = await bcrypt.compare(password, userInDB.hashedPassword)
+      if(passwordMatch) {
+        req.session.currentUser = userInDB;
+        res.render("auth/profile", userInDB)
+        // Puede ser este?? --> res.render("auth/homepage", user)
+        
+      } else {
+        res.render ("auth/login", {error: "Imposible verificar al usuario"})
+      }
+
     }
   } catch (error) {
     next (error)
@@ -51,9 +60,9 @@ router.get ("/register", (req, res, next) => {
 router.post ("/register", async (req, res, next) => {
   const { username, email, password, repeatedPassword } = req.body;
   try {
-    const userInDB = await User.findOne({ email: email });
+    const userInDB = await User.findOne({ username: username });
     if (userInDB) {
-      res.render('auth/signup', { error: `There already is a user with email ${email}` });
+      res.render('auth/login', { error: `There already is a user with email ${email}` });
       return;
     } else {
       const salt = await bcrypt.genSalt(saltRounds);
@@ -114,10 +123,10 @@ router.get('/login', async (req, res, next) => {
 // @route   POST /auth/login
 // @access  Public
 router.post('/login', async (req, res, next) => {
-  const { email, password } = req.body;
+  const { username, password } = req.body;
   // ⚠️ Add validations!
   try {
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ username: username });
     if (!user) {
       res.render('auth/login', { error: "User not found" });
       return;
