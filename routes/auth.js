@@ -21,7 +21,6 @@ router.post("/signup", async function (req, res, next) {
     console.log(hashedPassword)
     return;
   }
-
   // No he metido la parte de Regex, se queda en cuadrar con Victor.
   try {
 
@@ -42,8 +41,9 @@ router.post("/signup", async function (req, res, next) {
 
 })
 
-// Register POST and GET 
-
+// @desc    Displays the register page and form
+// @route   GET /auth/signup
+// @access  Public
 router.get ("/register", (req, res, next) => {
   res.render("auth/register")
 }) 
