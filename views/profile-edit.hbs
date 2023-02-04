@@ -1,0 +1,7 @@
+<h1>Editing {{username}}'s profile</h1>
+
+<form method="POST" action="/profile/edit">
+  <label>New username:</label>
+  <input type="text" name="username" required="true" value="{{username}}" />
+  <button type="submit">Save changes</button>
+</form>

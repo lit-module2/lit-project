@@ -11,6 +11,7 @@ const MongoStore = require('connect-mongo');
 // Routers require
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');
+const profileRouter = require('./routes/profile');
 const questionRouter = require('./routes/question');
 
 const app = express();
@@ -48,6 +49,7 @@ app.set('view engine', 'hbs');
 
 // routes intro
 app.use('/', indexRouter);
+app.use("/profile", profileRouter)
 app.use('/auth', authRouter);
 app.use('/question', questionRouter)
 
