@@ -23,6 +23,7 @@ router.post("/login", async function (req, res, next) {
     res.render("auth/login", {error: "Todos los campos son requeridos"});
     return;
   }
+  
   // No he metido la parte de Regex, se queda en cuadrar con Victor.
   try {
     // Usamos el username para encontrar los usuarios.
