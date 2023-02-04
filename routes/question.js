@@ -28,11 +28,13 @@ router.get('/', async (req, res, next) => {
 // @access  User with user role only
 router.post('/:questionId', async (req, res, next) => {
   try {
-    const userAsked = req.session.currentUser;
+    const userAsked = req.session.currentUser._id;
     const questionId = req.params.questionId;
-    const { possibleAnswers, answer } = req.body;
-    console.log(questionId, userAsked, answer, possibleAnswers);
-    await UserAnswer.create({ questionId, userAsked, answer, possibleAnswers });
+    const { possibleAnswers, userAnswered } = req.body;
+    console.log(req.body);
+    console.log(questionId, userAsked, userAnswered, possibleAnswers);
+    await UserAnswer.create({ questionId, userAsked, userAnswered, possibleAnswers });
+    res.redirect('/question');
   } catch (error) {
     next(error)
   }

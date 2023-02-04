@@ -4,7 +4,7 @@
     <form action="/question/{{randomQuestion._id}}" method="POST">
     {{#each randomUsers}}
         <input type="hidden" name="possibleAnswers" value={{this._id}} />
-        <button type="submit" name="answer" class="answer-button" value={{this._id}}>{{this.username}}</input>
+        <button type="submit" name="userAnswered" class="answer-button" value={{this._id}}>{{this.username}}</input>
     {{/each}}
     </form>
 
