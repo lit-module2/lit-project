@@ -16,6 +16,7 @@ const questionSchema = new Schema(
     // choose whether the question has a positive affect on its category or a negative one
     effect: {
       type: Boolean,
+      default: true,
       required: true
     },
     // true --> question apt to everyone, false --> sensitive content
