@@ -14,14 +14,14 @@ router.get("/", async (req, res, next) => {
 
 router.get("/edit", async(req, res, next) => {
     const user = req.session.currentUser;
-    res.render("profile", user);
+    res.render("profile-edit", user);
 })
-
 
 
 router.post ("/edit", async (req, res, next) => {
     const {username} = req.body;
     const user = req.session.currentUser;
+    const {email} = req.body;
     try {
         const userInDB = await User.findByIdAndUpdate( user._id, {username}, {new:true});
         req.session.currentUser = userInDB;
