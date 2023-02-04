@@ -1,6 +1,11 @@
 <h1>{{randomQuestion.question}}</h1>
+
 <div class="answer-buttons-container">
+    <form action="/question/{{randomQuestion._id}}" method="POST">
     {{#each randomUsers}}
-    <button type="submit" class="answer-button">{{this.username}}</button>
+        <input type="hidden" name="possibleAnswers" value={{this._id}} />
+        <button type="submit" name="answer" class="answer-button" value={{this._id}}>{{this.username}}</input>
     {{/each}}
+    </form>
+
 </div>
