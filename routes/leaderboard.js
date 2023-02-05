@@ -14,13 +14,15 @@ router.get('/', async (req, res, next) => {
 // @desc    Shows leaderboard for a given category
 // @route   GET /leaderboard/:category
 // @access  User with user role only
-router.get('/:category', async (req, res, next) => {
-    const category = req.params;
-    const questionsByCategory = await Question.find({category: category});
-    const actions = await UserAnswer.find({question: { $in: questionsByCategory}});
-    const users = await User.find({});
-    users.forEach((user) => {
-        const userActions = actions.filter(action => action.userAnswered)
-    })
-})
+// router.get('/:category', async (req, res, next) => {
+//     const category = req.params;
+//     const questionsByCategory = await Question.find({category: category});
+//     const actions = await UserAnswer.find({question: { $in: questionsByCategory}});
+//     const users = await User.find({});
+//     users.forEach((user) => {
+//         const userActions = actions.filter(action => action.userAnswered)
+//     })
+// })
+
+module.exports = router;
 
