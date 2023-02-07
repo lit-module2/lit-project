@@ -1,0 +1,16 @@
+<h1>Leaderboard</h1>
+
+<div class="leaderboard-category-selector">
+    <form action="/leaderboard/category" method="GET">
+        <label>Pick a category!</label>
+        <select name="category">
+            <option value="Baldness">Baldness</option>
+            <option value="Attractiveness">Attractiveness</option>
+            <option value="Style">Style</option>
+            <option value="Programming skills">Programming Skills</option>
+        </select>
+        <button type="submit">Check leaderboard</button>
+    </form>
+</div>
+
+<h1>{{scores}}</h1>
