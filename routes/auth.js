@@ -45,6 +45,13 @@ router.post("/login", async function (req, res, next) {
 
 })
 
+// GET Profile 
+
+router.get("/profile", (req, res, next) => {
+  res.render("auth/profile")
+})
+
+
 // @desc    Displays the register page and form
 // @route   GET /auth/signup
 // @access  Public
@@ -75,8 +82,11 @@ router.post ("/register", async (req, res, next) => {
 
 // @desc    Destroy user session and logs out
 // @route   POST /auth/logout
-// @access  Private 
-router.post('/logout', (req, res, next) => {
+// @access  Public 
+
+
+
+router.get('/logout', (req, res, next) => {
   req.session.destroy((err) => {
     if (err) {
       next(err)
@@ -85,5 +95,6 @@ router.post('/logout', (req, res, next) => {
     }
   });
 })
+
 
 module.exports = router;
