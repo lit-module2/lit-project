@@ -13,4 +13,20 @@
     </form>
 </div>
 
-<h1>{{scores}}</h1>
+<div class="rank">
+    <div class="leader">
+        <h2>{{data.2.score}}</h2>
+        <div class="rank-bar" id="second-ranked"></div>
+        <h3>{{data.2.user}}</h3>
+    </div>
+    <div class="leader">
+        <h2>{{data.1.score}}</h2>
+        <div class="rank-bar" id="first-ranked"></div>
+        <h3>{{data.1.user}}</h3>
+    </div>
+    <div class="leader">
+        <h2>{{data.3.score}}</h2>
+        <div class="rank-bar" id="third-ranked"></div>
+        <h3>{{data.3.user}}</h3>        
+    </div>
+</div>

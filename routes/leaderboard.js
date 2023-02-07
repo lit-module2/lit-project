@@ -28,18 +28,18 @@ router.get('/category', async (req, res, next) => {
             //convert to string because comparison between objectId's is absolute trash
             if (String(action.userAnswered) === String(user._id)) {
                 if (action.questionId.effect) {
-                    userScore++;
+                    userScore += 127;
                 }
                 else {
-                    userScore--;
+                    userScore -= 127;
                 }
             }
         }
         scores.push({user: user.username, score: userScore});
     }
     scores = scores.sort((a, b) => b.score - a.score);
-    res.render('leaderboard', scores);
+    console.log(scores)
+    res.render('leaderboard', {data: scores});
 })
 
 module.exports = router;
-
