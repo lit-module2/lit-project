@@ -2,18 +2,19 @@ const express = require("express")
 const router = require('express').Router();
 const Question = require('../models/Question');
 const User = require('../models/User');
+const routeProtect = require('../middleware/index');
 
 // @desc    Shows question submit view and form
 // @route   GET /submit-question
 // @access  User with user role only
-router.get('/', async (req, res, next) => {
+router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
     res.render('submit-question');
 })
 
 // @desc    Creates question in DB
 // @route   POST /submit-question
 // @access  User with user role only
-router.post('/', async (req, res, next) => {
+router.post('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
     try {
         const { question, category, effect, safe, author } = req.body;
         console.log(req.body);
