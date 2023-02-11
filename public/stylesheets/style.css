@@ -117,3 +117,8 @@ nav > svg:hover {
 #third-ranked {
   height:25vmin;
 }
+
+a {
+  color: black;
+  text-decoration: none;
+}
