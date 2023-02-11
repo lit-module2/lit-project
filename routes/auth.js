@@ -80,7 +80,7 @@ router.post ("/register", async (req, res, next) => {
       const salt = await bcrypt.genSalt(saltRounds);
       const hashedPassword = await bcrypt.hash(password, salt);
       const user = await User.create({ username, email, hashedPassword });
-      res.render('profile', user);
+      res.render('profile/profile', user);
     }
   } catch (error) {
     next(error)
