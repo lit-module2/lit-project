@@ -22,17 +22,14 @@ router.post("/login", async function (req, res, next) {
     res.render("auth/login", {error: "Todos los campos son requeridos"});
     return;
   }
-  // No he metido la parte de Regex, se queda en cuadrar con Victor.
   try {
     // Usamos el username para encontrar los usuarios.
     const userInDB = await User.findOne({username: username});
-    console.log(userInDB);
     if(!userInDB) {
-      res.render ("auth/homepage", {error:`no hay nadie en la base de datos bajo el nombre ${username}`})
+      res.render ("auth/login", {error:`${username} doesn't exist!`})
       return  
     } else {
       const passwordMatch = await bcrypt.compare(password, userInDB.hashedPassword)
-      console.log(passwordMatch);
       if(passwordMatch) {
         req.session.currentUser = userInDB;
         res.redirect('/question')
@@ -47,13 +44,6 @@ router.post("/login", async function (req, res, next) {
 
 })
 
-// GET Profile 
-
-router.get("/profile", (req, res, next) => {
-  res.render("auth/profile")
-})
-
-
 // @desc    Displays the register page and form
 // @route   GET /auth/signup
 // @access  Public
@@ -66,6 +56,21 @@ router.get ("/register", (req, res, next) => {
 // @access  Public
 router.post ("/register", async (req, res, next) => {
   const { username, email, password, repeatedPassword } = req.body;
+  const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  if(!regexEmail.test(email)) {
+    res.render('auth/register', { error: `Please enter a valid email!` });
+  }
+  const regexPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
+  if (!regexPassword.test(password)) {
+    res.render('auth/register', { error: 'Password needs to contain at least 6 characters, one number, one lowercase and one uppercase letter.' });
+    return;
+  }
+  const salt = await bcrypt.genSalt(saltRounds);
+  const hashedFirstPassword = await bcrypt.hash(password, salt);
+  const hashedSecondPassword = await bcrypt.hash(repeatedPassword, salt);
+  if (hashedFirstPassword!=hashedSecondPassword) {
+    res.render('auth/register', { error: `Passwords don't match!` });
+  }
   try {
     const userInDB = await User.findOne({ username: username });
     if (userInDB) {
@@ -81,19 +86,5 @@ router.post ("/register", async (req, res, next) => {
     next(error)
   }
 });
-
-// @desc    Destroy user session and logs out
-// @route   POST /auth/logout
-// @access  Private - user or admin
-router.post('/logout', routeProtect.isLoggedIn, (req, res, next) => {
-  req.session.destroy((err) => {
-    if (err) {
-      next(err)
-    } else {
-      res.redirect('/auth/login');
-    }
-  });
-})
-
 
 module.exports = router;
