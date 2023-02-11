@@ -15,15 +15,15 @@ router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
 // @route   POST /submit-question
 // @access  User with user role only
 router.post('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
+    const { question, category, effect, safe, author } = req.body;
+    console.log(req.body);
+    const currentUser = req.session.currentUser._id;
     try {
-        const { question, category, effect, safe, author } = req.body;
-        console.log(req.body);
-        const currentUser = req.session.currentUser._id;
         const uniqueQuestion = await Question.findOne({question: question});
-        console.log(uniqueQuestion);
         if (!uniqueQuestion) {
             const newQuestion = await Question.create({ question: question, category: category, effect: effect, safe: safe, _author: currentUser});
             console.log(newQuestion);
+            res.redirect('submit-question');
         }
         else {
             res.render('submit-question', { error: `That question already exists!` });

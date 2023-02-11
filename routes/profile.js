@@ -2,38 +2,29 @@ const express = require ("express");
 const async = require("hbs/lib/async");
 const router = express.Router();
 const User = require ("../models/User")
+const routeProtect = require("../middleware/index");
 
 
-router.get("/", (req, res, next) => {
+// @desc    Shows user profile
+// @route   GET /profile
+// @access  User with user role only
+router.get("/", routeProtect.isUserLoggedIn, (req, res, next) => {
     const user = req.session.currentUser;
     res.render("profile", user);
 })
 
-// GET Edit
-
-
-router.get("/edit", (req, res, next) => {
+// @desc    Shows user profile and lets him edit information
+// @route   GET /profile/edit
+// @access  User with user role only
+router.get("/edit", routeProtect.isUserLoggedIn, (req, res, next) => {
     const user = req.session.currentUser;
     res.render("profile-edit", user);
 })
 
-
-// router.post ("/edit", async (req, res, next) => {
-//     //const {username} = req.body;
-//     const user = req.session.currentUser;
-//     const {password} = req.body;
-//     console.log(user)
-//     try {
-//         const userInDB = await User.findByIdAndUpdate( user._id, {password}, {new:true});
-//         req.session.currentUser = userInDB;
-//         res.redirect("/profile");
-//     } catch (error){
-//         next(error)
-//     }
-// })
-
-
-router.post("/edit", async (req, res, next) => {
+// @desc    Edits user information in DB
+// @route   POST /profile/edit
+// @access  User with user role only
+router.post("/edit", routeProtect.isUserLoggedIn, async (req, res, next) => {
     const user = req.session.currentUser;
     if (user) {
         const {password} = req.body;
