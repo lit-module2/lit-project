@@ -68,7 +68,7 @@ svg {
   fill:white;
 }
 
-header > svg {
+header > a > svg {
   width:8vmin;
 }
 
