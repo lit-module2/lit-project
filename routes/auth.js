@@ -23,7 +23,7 @@ router.post("/login", async function (req, res, next) {
   // No he metido la parte de Regex, se queda en cuadrar con Victor.
   try {
     // Usamos el username para encontrar los usuarios.
-    const userInDB = await User.findOne ({username: username});
+    const userInDB = await User.findOne({username: username});
     console.log(userInDB);
     if(!userInDB) {
       res.render ("auth/homepage", {error:`no hay nadie en la base de datos bajo el nombre ${username}`})
@@ -73,7 +73,7 @@ router.post ("/register", async (req, res, next) => {
       const salt = await bcrypt.genSalt(saltRounds);
       const hashedPassword = await bcrypt.hash(password, salt);
       const user = await User.create({ username, email, hashedPassword });
-      res.render('auth/profile', user);
+      res.render('profile', user);
     }
   } catch (error) {
     next(error)
