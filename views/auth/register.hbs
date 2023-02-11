@@ -10,4 +10,8 @@
   <label>Repeat password</label>
   <input type="password" name="repeatedPassword" placeholder="********">
   <button type="submit">Register</button>
-</form> 
+</form>
+
+{{#if error}}
+<h2>{{error}}</h2>
+{{/if}}
