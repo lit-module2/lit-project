@@ -3,6 +3,8 @@ const router = express.Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const routeProtect = require('../middleware/index');
+
 
 // @desc    Displays login view
 // @route   GET /auth/login
@@ -82,11 +84,8 @@ router.post ("/register", async (req, res, next) => {
 
 // @desc    Destroy user session and logs out
 // @route   POST /auth/logout
-// @access  Public 
-
-
-
-router.get('/logout', (req, res, next) => {
+// @access  Private - user or admin
+router.post('/logout', routeProtect.isLoggedIn, (req, res, next) => {
   req.session.destroy((err) => {
     if (err) {
       next(err)
