@@ -41,4 +41,21 @@ router.post("/edit", routeProtect.isUserLoggedIn, async (req, res, next) => {
     }
 })
 
+// @desc    Destroy user session and logs out
+// @route   POST /profile/logout
+// @access  Private - user or admin
+router.post('/logout', routeProtect.isLoggedIn, (req, res, next) => {
+    req.session.destroy((err) => {
+      if (err) {
+        next(err)
+      } else {
+        res.render('logout');
+      }
+    });
+  })
+  
+  router.get('/logout', (req, res, next) => {
+    res.render('logout');
+  })
+
 module.exports = router;

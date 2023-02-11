@@ -51,7 +51,7 @@ app.set('view engine', 'hbs');
 
 // routes intro
 app.use('/', indexRouter);
-app.use("/profile", profileRouter)
+app.use('/profile', profileRouter)
 app.use('/auth', authRouter);
 app.use('/question', questionRouter)
 app.use('/submit-question', submitQuestionRouter);
