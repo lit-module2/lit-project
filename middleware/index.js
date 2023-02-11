@@ -7,7 +7,7 @@ function isLoggedIn (req, res, next) {
 }
 
 function isUserLoggedIn (req, res, next) {
-    if (req.session.currentUser.role === 'user') {
+    if (req.session.currentUser && req.session.currentUser.role === 'user') {
         next();
     } else {
         res.redirect('/auth/login');
@@ -15,7 +15,7 @@ function isUserLoggedIn (req, res, next) {
 }
 
 function isAdminLoggedIn (req, res, next) {
-    if (req.session.currentUser.role === 'admin') {
+    if (req.session.currentUser && req.session.currentUser.role === 'admin') {
         next()
     } else {
         res.redirect('/auth/login')
