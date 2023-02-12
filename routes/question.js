@@ -27,12 +27,10 @@ router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
 // @route   POST /question/:questionId
 // @access  User with user role only
 router.post('/:questionId', routeProtect.isUserLoggedIn, async (req, res, next) => {
+  const userAsked = req.session.currentUser._id;
+  const questionId = req.params.questionId;
+  const { possibleAnswers, userAnswered } = req.body;
   try {
-    const userAsked = req.session.currentUser._id;
-    const questionId = req.params.questionId;
-    const { possibleAnswers, userAnswered } = req.body;
-    console.log(req.body);
-    console.log(questionId, userAsked, userAnswered, possibleAnswers);
     await UserAnswer.create({ questionId, userAsked, userAnswered, possibleAnswers });
     res.redirect('/question');
   } catch (error) {

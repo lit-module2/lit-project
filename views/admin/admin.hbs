@@ -1,0 +1,22 @@
+<h1>Admin panel</h1>
+
+{{#if data}}
+    {{#each data}}
+    <div class="admin-question">
+        {{#if this.emoji}}
+        <h1 class="admin-emoji">{{this.emoji}}</h1>
+        {{/if}}
+        <h2>{{this.question}}</h2>
+        <form action="/admin/{{this._id}}" method="POST">
+            <div class="admin-buttons">
+                <button class="approve" name="approval" value="true">✅</button>
+                <button class="approve" name="approval" value="false">❌</button>
+            </div>
+        </form>
+        <h3>Category: {{this.category}}</h3>
+        <h3>Effect: {{this.effect}}</h3>
+    </div>
+    {{/each}}
+{{else}}
+    <h2>There are no questions pending review!</h2>
+{{/if}}

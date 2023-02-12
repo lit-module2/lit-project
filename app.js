@@ -15,6 +15,8 @@ const profileRouter = require('./routes/profile');
 const questionRouter = require('./routes/question');
 const submitQuestionRouter = require('./routes/submit-question');
 const leaderboardRouter = require('./routes/leaderboard');
+const adminRouter = require('./routes/admin');
+
 
 const app = express();
 
@@ -51,11 +53,12 @@ app.set('view engine', 'hbs');
 
 // routes intro
 app.use('/', indexRouter);
-app.use('/profile', profileRouter)
+app.use('/profile', profileRouter);
 app.use('/auth', authRouter);
-app.use('/question', questionRouter)
+app.use('/question', questionRouter);
 app.use('/submit-question', submitQuestionRouter);
 app.use('/leaderboard', leaderboardRouter);
+app.use('/admin', adminRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
