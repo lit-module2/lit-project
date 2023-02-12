@@ -9,8 +9,9 @@ const routeProtect = require('../middleware/index');
 // @route   GET /question
 // @access  User with user role only
 router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
+  
   try {
-    const questions = await Question.find({});
+    const questions = await Question.find({_approved: true});
     const randomQuestion = questions[Math.floor(Math.random() * questions.length )];
 
     const users = await User.find({});
