@@ -42,7 +42,7 @@ router.get('/category', routeProtect.isUserLoggedIn, async (req, res, next) => {
         }
         scores = scores.sort((a, b) => b.score - a.score);
         console.log(scores)
-        res.render('leaderboard', {data: scores});
+        res.render('leaderboard', {data: scores, category: category});
     }
     catch (error) {
         console.log(error);
