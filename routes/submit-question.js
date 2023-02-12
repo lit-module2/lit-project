@@ -15,13 +15,12 @@ router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
 // @route   POST /submit-question
 // @access  User with user role only
 router.post('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
-    const { question, category, effect, safe, author } = req.body;
-    console.log(req.body);
+    const { emoji, question, category, effect, safe } = req.body;
     const currentUser = req.session.currentUser._id;
     try {
         const uniqueQuestion = await Question.findOne({question: question});
         if (!uniqueQuestion) {
-            const newQuestion = await Question.create({ question: question, category: category, effect: effect, safe: safe, _author: currentUser});
+            const newQuestion = await Question.create({ emoji: emoji, question: question, category: category, effect: effect, safe: safe, _author: currentUser});
             console.log(newQuestion);
             res.redirect('submit-question');
         }
@@ -35,4 +34,3 @@ router.post('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
 })
 
 module.exports = router;
-
