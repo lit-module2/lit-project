@@ -16,6 +16,7 @@ const questionRouter = require('./routes/question');
 const submitQuestionRouter = require('./routes/submit-question');
 const leaderboardRouter = require('./routes/leaderboard');
 const adminRouter = require('./routes/admin');
+const notificationsRouter = require('./routes/notifications')
 
 
 const app = express();
@@ -59,6 +60,7 @@ app.use('/question', questionRouter);
 app.use('/submit-question', submitQuestionRouter);
 app.use('/leaderboard', leaderboardRouter);
 app.use('/admin', adminRouter);
+app.use('/notifications', notificationsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
