@@ -28,7 +28,6 @@ router.post('/edit', routeProtect.isUserLoggedIn, async (req, res, next) => {
     const user = req.session.currentUser;
     if (user) {
         const {password} = req.body;
-        console.log(user)
         try {
             const userInDB = await User.findByIdAndUpdate( user._id, {password}, {new:true})
             req.session.currentUser = userInDB;
@@ -49,13 +48,13 @@ router.post('/logout', routeProtect.isLoggedIn, (req, res, next) => {
       if (err) {
         next(err)
       } else {
-        res.render('profile/logout');
+        res.render('landing');
       }
     });
   })
   
   router.get('/logout', (req, res, next) => {
-    res.render('profile/logout');
+    res.redirect('landing');
   })
 
 module.exports = router;

@@ -19,7 +19,7 @@ router.get('/login', (req, res, next) => {
 router.post("/login", async function (req, res, next) {
   const {username, password} = req.body;
   if(!username ||!password) {
-    res.render("auth/login", {error: "Todos los campos son requeridos"});
+    res.render("auth/login", {error: "Please enter a username and a password!"});
     return;
   }
   try {
@@ -32,11 +32,15 @@ router.post("/login", async function (req, res, next) {
       const passwordMatch = await bcrypt.compare(password, userInDB.hashedPassword)
       if(passwordMatch) {
         req.session.currentUser = userInDB;
-        res.redirect('/question')
+        if (req.session.currentUser.role === 'user') {
+          res.redirect('/question');
+        }
+        else {
+          res.redirect('/admin');
+        }
       } else {
-        res.render("auth/login", {error: "Imposible verificar al usuario"})
+        res.render("auth/login", {error: "Incorrect username or password"})
       }
-
     }
   } catch (error) {
     next (error)

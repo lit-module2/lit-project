@@ -13,20 +13,22 @@
     </form>
 </div>
 
+{{#if data}}
 <div class="rank">
     <div class="leader">
-        <h2>{{data.2.score}}</h2>
-        <div class="rank-bar" id="second-ranked"></div>
-        <h3>{{data.2.user}}</h3>
-    </div>
-    <div class="leader">
         <h2>{{data.1.score}}</h2>
-        <div class="rank-bar" id="first-ranked"></div>
+        <div class="rank-bar" id="second-ranked"></div>
         <h3>{{data.1.user}}</h3>
     </div>
     <div class="leader">
-        <h2>{{data.3.score}}</h2>
+        <h2>{{data.0.score}}</h2>
+        <div class="rank-bar" id="first-ranked"></div>
+        <h3>{{data.0.user}}</h3>
+    </div>
+    <div class="leader">
+        <h2>{{data.2.score}}</h2>
         <div class="rank-bar" id="third-ranked"></div>
-        <h3>{{data.3.user}}</h3>        
+        <h3>{{data.2.user}}</h3>        
     </div>
 </div>
+{{/if}}
