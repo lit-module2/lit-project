@@ -9,6 +9,13 @@ const routeProtect = require('../middleware/index');
 // @desc    Displays login view
 // @route   GET /auth/login
 // @access  Public
+router.get('/', (req, res, next) => {
+  res.render('auth/index');
+})
+
+// @desc    Displays login view
+// @route   GET /auth/login
+// @access  Public
 router.get('/login', (req, res, next) => {
   res.render('auth/login');
 })
@@ -60,6 +67,7 @@ router.get ("/register", (req, res, next) => {
 // @access  Public
 router.post ("/register", async (req, res, next) => {
   const { username, email, password, repeatedPassword } = req.body;
+
   const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if(!regexEmail.test(email)) {
     res.render('auth/register', { error: `Please enter a valid email!` });
