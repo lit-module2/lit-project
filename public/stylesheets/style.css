@@ -61,10 +61,11 @@ html {
 
 :root {
   --br: 15px;
-  --primary-black: #0c090a;
-  --primary-pink: #E01A4f;
+  --primary-black: black;
+  --primary-orange: #FF8A5B;
   --primary-yellow: #ffe066;
-  --primary-purple: #540853;
+  --primary-blue: #2be8eb;
+  --primary-pink:#F56882;
   --basic-white: #fff;
 }
 
@@ -86,7 +87,7 @@ body {
 }
 
 .main {
-  background-color: var(--primary-yellow);
+  background-color: var(--primary-black);
   padding:10vh 0;
   min-height:80vh;
 }
@@ -121,47 +122,23 @@ header, nav {
   flex-direction:row;
   align-items: center;
   justify-content: space-around;
-  background-color:var(--primary-black);
-}
-
-#navigation {
-  /* background-color:black; */
 }
 
 header {
   position: fixed;
   top: 0;
   width:100%;
-  border-bottom-style: solid;
-  border-bottom-width: 4px;
-  border-bottom-color:black;
 }
 
 nav {
   position:fixed;
   bottom:0;
   width:100%;
-  border-top-style: solid;
-  border-top-width: 4px;
-  border-top-color:black;
 }
 
 svg {
-  fill: var(--primary-black);
-}
-
-header > a > svg {
-  width:8vmin;
-}
-
-nav > a > svg {
-  width:10vmin;
-  fill:var(--primary-black);
-}
-
-nav > svg:hover {
-  fill-rule:nonzero;
-  fill:black;
+  fill: white;
+  height:10vmin;
 }
 
 .rank {
@@ -206,7 +183,27 @@ a {
   text-decoration: none;
 }
 
+/* Common styles */
+
+.main-section {
+  position: absolute;
+  width:90%;
+  margin: 0 5vmin;
+  height:80%;
+  border-radius:10px;
+}
+
+/* Landing styles */
+
+#landing {
+  background-color: var(--primary-yellow);
+}
+
 /* Question menu styles */
+
+#question-menu {
+  background-color: var(--primary-yellow);
+}
 
 #question-container {
   max-width: 80%;
@@ -254,4 +251,28 @@ a {
 .answer-button:active {
   transform: translateX(2px) translateY(2px);
   background-color:var(--primary-pink);
+}
+
+/* Leaderboard menu styles */
+
+#leaderboard-menu {
+  background-color: var(--primary-blue);
+}
+
+/* Submit question menu styles */
+
+#submit-question-menu {
+  background-color: var(--primary-pink);
+}
+
+/* Notifications menu styles */
+
+#notifications {
+  background-color: var(--primary-orange);
+}
+
+/* Notifications menu styles */
+
+#profile {
+  background-color: var(--primary-orange);
 }
