@@ -86,7 +86,7 @@ body {
 }
 
 .main {
-  background: linear-gradient(var(--primary-black), var(--primary-pink), var(--primary-yellow));
+  background-color: var(--primary-yellow);
   padding:10vh 0;
   min-height:80vh;
 }
@@ -121,7 +121,7 @@ header, nav {
   flex-direction:row;
   align-items: center;
   justify-content: space-around;
-  /* background-color:var(--primary-black) */
+  background-color:var(--primary-black);
 }
 
 #navigation {
@@ -132,16 +132,22 @@ header {
   position: fixed;
   top: 0;
   width:100%;
+  border-bottom-style: solid;
+  border-bottom-width: 4px;
+  border-bottom-color:black;
 }
 
 nav {
   position:fixed;
   bottom:0;
   width:100%;
+  border-top-style: solid;
+  border-top-width: 4px;
+  border-top-color:black;
 }
 
 svg {
-  fill: var(--basic-white);
+  fill: var(--primary-black);
 }
 
 header > a > svg {
