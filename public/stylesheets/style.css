@@ -1,21 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Comfortaa:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/futura-pt');
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* styling starts here */
 
 html {
   font-family: 'Bowlby One SC';
   font-size: 16px;
 }
 
+/* color palette */
+
+:root {
+  --br: 15px;
+  --primary-black: #0c090a;
+  --primary-pink: #E01A4f;
+  --primary-yellow: #ffe066;
+  --primary-purple: #540853;
+  --basic-white: #fff;
+}
+
 /*  Login and register forms */
 
 .login-div {
   background-color: blue;
-  
 }
 
 .login-form {
   justify-content: center;
 }
-
 
 body {
   padding: 0;
@@ -25,7 +86,7 @@ body {
 }
 
 .main {
-  background-color:gold;
+  background: linear-gradient(var(--primary-black), var(--primary-pink), var(--primary-yellow));
   padding:10vh 0;
   min-height:80vh;
 }
@@ -34,9 +95,24 @@ img {
   width:110px;
 }
 
+#app-name {
+  font-family:'Bowlby One SC';
+  font-size:2.3rem;
+  background: -webkit-linear-gradient(var(--primary-pink), var(--primary-yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 h1 {
   font-size:2.3rem;
-  color:white;
+  font-family:'Bowlby One SC';
+  color:var(--basic-white);
+}
+
+h2, h3, h4, label {
+  font-family:'Futura PT', sans-serif;
+  font-weight:500;
+  font-size: 1.5rem;
 }
 
 header, nav {
@@ -45,11 +121,11 @@ header, nav {
   flex-direction:row;
   align-items: center;
   justify-content: space-around;
-  background-color:rgba(255, 255, 255, 0)
+  /* background-color:var(--primary-black) */
 }
 
 #navigation {
-  background-color:black;
+  /* background-color:black; */
 }
 
 header {
@@ -65,7 +141,7 @@ nav {
 }
 
 svg {
-  fill:white;
+  fill: var(--basic-white);
 }
 
 header > a > svg {
@@ -74,6 +150,7 @@ header > a > svg {
 
 nav > a > svg {
   width:10vmin;
+  fill:var(--primary-black);
 }
 
 nav > svg:hover {
@@ -121,4 +198,54 @@ nav > svg:hover {
 a {
   color: black;
   text-decoration: none;
+}
+
+/* Question menu styles */
+
+#question-container {
+  max-width: 80%;
+  margin: 15% auto;
+  text-align:center;
+}
+
+.question-text {
+  font-size:1.8rem;
+}
+
+.question-emoji {
+  font-size:6rem;
+  margin-bottom: 15%;
+}
+
+.answer-buttons-container {
+  position:absolute;
+  top: 55%;
+  left: 0%;
+}
+
+.answer-buttons-container > form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  align-content: center;
+  justify-content: center;
+  gap:8vmin;
+}
+
+.answer-button {
+  display:block;
+  background-color:var(--primary-purple);
+  border-style:none;
+  border-radius:10px;
+  width: 35vmin;
+  height: 15vmin;
+  color:white;
+  font-family:'Bowlby One SC';
+  font-size:1.2rem;
+  box-shadow: 3px 3px 3px 0px var(--primary-black);
+}
+
+.answer-button:active {
+  transform: translateX(2px) translateY(2px);
+  background-color:var(--primary-pink);
 }
