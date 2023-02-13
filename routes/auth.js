@@ -5,6 +5,12 @@ const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const routeProtect = require('../middleware/index');
 
+// @desc    Displays login view
+// @route   GET /auth/
+// @access  Public
+router.get('/', (req, res, next) => {
+  res.render('auth/index');
+})
 
 // @desc    Displays login view
 // @route   GET /auth/login
