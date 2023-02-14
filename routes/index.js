@@ -5,7 +5,7 @@ const router = require('express').Router();
 // @route   GET /
 // @access  Anyone, public
 router.get('/', (req, res, next) => {
-  res.render('landing')
+  res.render('landing/landing', {layout: 'landing/landing-layout'});
 });
 
 module.exports = router;

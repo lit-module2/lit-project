@@ -48,13 +48,13 @@ router.post('/logout', routeProtect.isLoggedIn, (req, res, next) => {
       if (err) {
         next(err)
       } else {
-        res.render('landing');
+        res.render('landing/landing', {layout: 'landing/landing-layout'});
       }
     });
   })
   
   router.get('/logout', (req, res, next) => {
-    res.redirect('landing');
+    res.redirect('landing/landing');
   })
 
 module.exports = router;

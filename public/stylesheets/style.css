@@ -65,7 +65,7 @@ html {
   --primary-orange: #FF8A5B;
   --primary-yellow: #ffe066;
   --primary-blue: #2be8eb;
-  --primary-pink:#F56882;
+  --primary-pink:rgb(245, 104, 130);
   --basic-white: #fff;
 }
 
@@ -111,6 +111,11 @@ h2, h3, h4, label {
   font-size: 1.5rem;
 }
 
+span {
+  font-family:'Futura PT', sans-serif;
+  font-weight:500;
+}
+
 header, nav {
   height:10vh;
   display: flex;
@@ -153,11 +158,162 @@ a {
 
 /* Landing styles */
 
-#landing, #admin, #auth {
+#landing-app-name {
+  font-family:'Bowlby One SC';
+  font-size:3rem;
+  background: -webkit-linear-gradient(var(--primary-pink), var(--primary-yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align:center;
+  padding-bottom:10%;
+}
+
+#landing {
+  background-color:var(--primary-black);
+}
+
+#landing-ask-text, #landing-answer-text, #landing-admire-text {
+  padding:2%;
+  border-radius:15px;
+}
+
+#landing-ask-text {
+  background-color: var(--primary-pink);
+}
+
+#landing-answer-text {
   background-color: var(--primary-yellow);
 }
 
+#landing-admire-text {
+  background-color: var(--primary-blue);
+}
+
+.landing-text-container {
+  margin: 5% 0;
+}
+
+.landing-subtitle {
+  font-size:1.2rem;
+  padding: 2%;
+}
+
+.landing-sentence {
+  color:black;
+  font-size:0.8rem;
+}
+
+#landing-ask {
+  color:var(--primary-pink);
+}
+
+#landing-ask, #landing-ask-text {
+  text-align:left;
+}
+
+#landing-answer {
+  color:var(--primary-yellow);
+}
+
+#landing-answer, #landing-answer-text {
+  text-align:center;
+} 
+
+#landing-admire {
+  color:var(--primary-blue);
+}
+
+#landing-admire, #landing-admire-text {
+  text-align:right;
+}
+
+#landing > a {
+  color:white;
+}
+
+/* CSS */
+.landing-button-text {
+  margin-top: 40%;
+  text-align: center;
+}
+
+#learn-more-button {
+  font-size: 1rem;
+  margin: 60% auto;
+  padding: 0.6rem 2rem;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: rgb(17, 17, 17);
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#early-access-button {
+  margin: 20% auto;
+  padding: 0.6rem 2rem;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: rgb(17, 17, 17);
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+#early-access-button:before {
+  content: "";
+  background: linear-gradient(45deg, var(--primary-pink), var(--primary-orange), var(--primary-blue), var(--primary-yellow));
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-early-access-button 20s linear 1;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-early-access-button {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+#early-access-button:active {
+  transform: translateX(4px) translateY(4px);
+  opacity:0.5;
+}
+
+/* Admin view styles */
+
+#admin {
+  background-color: var(--primary-yellow);
+}
+
+
 /* Login and registration styles */
+
+#auth {
+  background-color: var(--primary-yellow);
+}
 
 .login-div {
   background-color: blue;
@@ -205,7 +361,7 @@ a {
 
 .answer-button {
   display:block;
-  background-color:var(--primary-orange);
+  background:linear-gradient(var(--primary-orange), var(--primary-pink));
   border-style:none;
   border-radius:10px;
   width: 35vmin;
