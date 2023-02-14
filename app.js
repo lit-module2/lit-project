@@ -8,6 +8,10 @@ const logger = require('morgan');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
+// OAuth de Google
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+
+
 // Routers require
 const indexRouter = require('./routes/index');
 const authRouter = require('./routes/auth');

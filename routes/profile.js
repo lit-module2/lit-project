@@ -3,6 +3,7 @@ const async = require("hbs/lib/async");
 const router = express.Router();
 const User = require ("../models/User")
 const routeProtect = require("../middleware/index");
+const auth = require ("./auth");
 
 
 // @desc    Shows user profile
@@ -12,6 +13,8 @@ router.get('/', routeProtect.isUserLoggedIn, (req, res, next) => {
     const user = req.session.currentUser;
     res.render('profile/profile', user);
 })
+
+
 
 // @desc    Shows user profile and lets him edit information
 // @route   GET /profile/edit

@@ -4,6 +4,41 @@ const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 const routeProtect = require('../middleware/index');
+// const dotenv = require("dotenv");
+// var passport = require('passport');
+// var GoogleStrategy = require('passport-google-oauth20');
+// const googleClientId = process.env.GOOGLE_CLIENT_ID;
+// dotenv.config();
+
+// // OAuth2 de google 
+
+// const clientID = "199671931095-t936piuj8a0sjr03mfuut2bm1umm4om9.apps.googleusercontent.com";
+// const clientSecret = "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";
+
+
+// const GoogleStrategy = require( 'passport-google-oauth2' ).Strategy;
+
+// passport.use(new GoogleStrategy({
+//     clientID:     GOOGLE_CLIENT_ID,
+//     clientSecret: GOOGLE_CLIENT_SECRET,
+//     callbackURL: "http://localhost:3000/auth/profile",
+//     passReqToCallback : true
+//   },
+//   function(request, accessToken, refreshToken, profile, done) {
+//     User.findOrCreate({ googleId: profile.id }, function (err, user) {
+//       return done(err, user);
+//     });
+//   }
+// ));
+
+// passport.serializeUser(function(user, done) {
+//   done(null,user)
+// });
+
+// passport.deserializeUser(function(user, done) {
+//   done(null,user)
+// })
+
 
 
 // @desc    Displays login view
@@ -43,6 +78,7 @@ router.post("/login", async function (req, res, next) {
   }
 
 })
+
 
 // @desc    Displays the register page and form
 // @route   GET /auth/signup

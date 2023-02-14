@@ -10,6 +10,14 @@
   <label>Repeat password</label>
   <input type="password" name="repeatedPassword" placeholder="********">
   <button type="submit">Register</button>
+
+  {{!-- Login de google --}}
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
+
+  <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
 </form>
 
 {{#if error}}

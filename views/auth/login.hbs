@@ -8,12 +8,21 @@
     
     <label>Password</label>
     <input type="password" name="password" placeholder="********" />
+
+
+    {{!-- Script Google --}}
+
+      <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
      
     {{#if error}}
     <p style="color:rgb(218, 90, 90)">{{ error }}</p>
     {{/if}}
     
     <button type="submit">Login</button>
+
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+
 
   </form>
 </div>
