@@ -13,7 +13,7 @@ router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
     const user = req.session.currentUser;
     const last24Hours = new Date((Date.now() - 24*60*60*1000));
     try {
-        const actions = await UserAnswer.find({userAnswered: user._id, userAsked: { $ne: user._id }, createdAt: { $lte: last24Hours}}).populate('userAsked').populate('questionId');
+        const actions = await UserAnswer.find({userAnswered: user._id, userAsked: { $ne: user._id }, createdAt: { $gte: last24Hours}}).populate('userAsked').populate('questionId');
         console.log(actions);
         const notificationData = actions.map(elem => {
             return {
