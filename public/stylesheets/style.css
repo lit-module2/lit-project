@@ -147,7 +147,7 @@ a {
 }
 
 .main-section {
-  position: absolute;
+  position: fixed;
   margin: 0 5%;
   min-width:80%;
   padding: 5%;
@@ -231,15 +231,14 @@ a {
   color:white;
 }
 
-/* CSS */
 .landing-button-text {
-  margin-top: 40%;
+  margin-top: 30%;
   text-align: center;
 }
 
 #learn-more-button {
   font-size: 1rem;
-  margin: 60% auto;
+  margin: 10% auto;
   padding: 0.6rem 2rem;
   border: none;
   outline: none;
@@ -539,6 +538,43 @@ a {
 #notifications {
   background-color: var(--primary-orange);
 }
+
+.notification-container {
+  display:flex;
+  flex-direction:row;
+  border-style: solid;
+  gap: 3vmin;
+  align-items:center;
+  border-width: 2px;
+  border-color:var(--primary-black);
+  border-radius:15px;
+  background-color:black;
+  padding: 5%;
+  margin: 5% auto;
+}
+
+.notification-emoji {
+  font-size: 2rem;
+}
+
+.notification-text {
+  color:white;
+  font-size: 1rem;
+  text-align:justify;
+}
+
+.notification-user, .notification-category {
+  font-family:'Bowlby One SC';
+}
+
+.notification-user {
+  color:var(--primary-yellow);
+}
+
+.notification-category {
+  color:var(--primary-blue);
+}
+
 
 /* Profile menu styles */
 

@@ -2,8 +2,10 @@
     <h1>Last 24 hours</h1>
     {{#if data}}
         {{#each data}}
-            <h2 class="notification-text"><span class="notification-user">{{this.userAsked}}</span> answered your name in a question about <span class="notification-category">{{this.questionCategory}}!</span></h2>
+        <div class="notification-container">
             <h2 class="notification-emoji">{{this.emoji}}</h3>
+            <h2 class="notification-text"><span class="notification-user">{{this.userAsked}}</span> answered your name in a question about <span class="notification-category">{{this.questionCategory}}!</span></h2>
+        </div>
         {{/each}}
     {{else}}
         <h2>You have no notifications at the moment!</h2>
