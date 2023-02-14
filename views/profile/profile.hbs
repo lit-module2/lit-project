@@ -1,10 +1,33 @@
 <section id="profile" class="main-section">
   <h1>Welcome {{ username }}</h1>
+  <div id="profile-field-list">
+    <div class="user-field">
+      <h3 class="user-info">👤 <span class="user-info-text">{{username}}</span></h3>
+    </div>
+    <div class="user-field">
+      <h3 class="user-info">📧 <span class="user-info-text">{{email}}</span></h3>
+    </div>
+    <div class="user-field">
+      <h3 class="user-info">📱 <span class="user-info-text">{{phone}}</span></h3>
+    </div>
+    <div class="user-field">
+      <h3 class="user-info">👫 <span class="user-info-text">{{gender}}</span></h3>
+    </div>
+    <div class="user-field">
+      <h3 class="user-info">🎂 <span class="user-info-text">{{dateOfBirth}}</span></h3>
+    </div>
+  </div>
 
-  <a href="/profile/edit">Edit profile</a><br/>
+  <div id="edit-profile-container">
+    <a href="/profile/edit" class="profile-button" id="edit-profile-button">Edit profile</a>
+  </div>
+
+  <div id="profile-questions-container">
+    <a href="/profile/approved-questions" class="profile-button" id="profile-questions-viewer">View approved questions</a>
+  </div>
 
   <form action="/profile/logout" method="POST">
-    <button type="submit">Log out</button>
+    <button type="submit" class="logout-button">Log out</button>
   </form>
 </section>
 

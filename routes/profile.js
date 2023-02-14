@@ -10,6 +10,7 @@ const routeProtect = require("../middleware/index");
 // @access  User with user role only
 router.get('/', routeProtect.isUserLoggedIn, (req, res, next) => {
     const user = req.session.currentUser;
+    console.log(user);
     res.render('profile/profile', user);
 })
 

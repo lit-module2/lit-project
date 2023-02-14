@@ -1,13 +1,42 @@
 <section id="profile" class="main-section">
-  <h1>Editing {{username}}'s profile</h1>
-
+  <h1>Welcome {{ username }}</h1>
+  <div id="edit-profile-form">
+    <form method="POST" action="/profile/edit">
+      <div class="user-field user-field-edit">
+        <label>👤 <span class="user-info-text">Username</span></label>
+        <br>
+        <input type="text" name="username" placeholder={{username}} />
+      </div>
+      <div class="user-field user-field-edit">
+        <label>🔐 <span class="user-info-text">Password</span></label>
+        <br>
+        <input type="password" name="newPassword" placeholder="********" />
+      </div>
+      <div class="user-field user-field-edit">
+        <label>📧 <span class="user-info-text">Email</span></label>
+        <br>
+        <input type="text" name="newEmail" placeholder={{password}} />
+      </div>
+      <div class="user-field user-field-edit">
+        <label>📱 <span class="user-info-text">Phone</span></label>
+        <br>
+        <input type="text" name="newPhone" placeholder={{phone}} />
+      </div>
+      <div class="user-field user-field-edit">
+        <label>👫 <span class="user-info-text">Gender</span></label>
+        <br>
+        <input type="text" name="newGender" placeholder={{gender}} />
+      </div>
+      <div class="user-field user-field-edit">
+        <label>🎂 <span class="user-info-text">Age</span></label>
+        <br>
+        <input type="number" name="newDateOfBirth" placeholder={{age}} />
+      </div>
+      <button type="submit" class="profile-button" id="save-changes-button">Save changes</button>
+    </form>
+  </div>
+  <a href="/profile">Go back</a>
   <form method="POST" action="/profile/edit">
-    <label>New username:</label>
-    <input type="text" name="username" required="true" value="{{username}}" />
-    <label>Password:</label>
-    <input type="password" name="********" required="true" value="{{password}}" />
-    <label>Repeated Password</label>
-    <input type="password" name="********" required="true" value="{{repeatedPassword}}" />
-    <button type="submit">Save changes</button>
+    <button type="submit" class="profile-button" id="delete-button">Delete account</button>
   </form>
 </section>

@@ -16,13 +16,15 @@ const userSchema = new Schema(
       trim: true
     },
     phone: {
+      type: String,
+      required: false,
+      trim: true,
+      default: 'Undisclosed'
+    },
+    age: {
       type: Number,
       required: false,
-      trim: true
-    },
-    dateOfBirth: {
-      type: String,
-      required: false
+      default: 13
     },
     hashedPassword: {
       type: String,
@@ -30,7 +32,8 @@ const userSchema = new Schema(
     },
     gender: {
       type: String,
-      required: false
+      required: false,
+      default: 'Undisclosed'
     },
     role: {
       type: String,
