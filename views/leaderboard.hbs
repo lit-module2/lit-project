@@ -1,35 +1,38 @@
-<h1>Leaderboard</h1>
+<section id="leaderboard-menu" class="main-section">
+    {{#if category}}
+    <h1>{{category}}</h1>
+    {{else}}
+    <h1>Leaderboard</h1>
+    {{/if}}
 
-<div class="leaderboard-category-selector">
-    <form action="/leaderboard/category" method="GET">
-        <label>Pick a category!</label>
-        <select name="category">
-            <option value="" disabled selected hidden>...</option>
-            <option value="Baldness">Baldness</option>
-            <option value="Attractiveness">Attractiveness</option>
-            <option value="Style">Style</option>
-            <option value="Programming skills">Programming Skills</option>
-        </select>
-        <button type="submit">Check leaderboard</button>
-    </form>
-</div>
+    <div class="leaderboard-category-selector">
+        <form action="/leaderboard/category" method="GET">
+            <label>Pick a category!</label>
+            <select name="category">
+                <option value="" disabled selected hidden>...</option>
+                <option value="Baldness">Baldness</option>
+                <option value="Attractiveness">Attractiveness</option>
+                <option value="Style">Style</option>
+                <option value="Programming skills">Programming Skills</option>
+            </select>
+            <button type="submit">Check leaderboard</button>
+        </form>
+    </div>
 
-{{#if data}}
-<div class="rank">
-    <div class="leader">
-        <h2>{{data.1.score}}</h2>
-        <div class="rank-bar" id="second-ranked"></div>
-        <h3>{{data.1.user}}</h3>
+    {{#if data}}
+    <section class="bar-graph bar-graph-vertical bar-graph-two">
+    <div class="bar-three bar-container">
+        <div id="bar1" class="bar" score={{data.0.score}}></div>
+        <p class="user">{{data.0.user}}</p>
     </div>
-    <div class="leader">
-        <h2>{{data.0.score}}</h2>
-        <div class="rank-bar" id="first-ranked"></div>
-        <h3>{{data.0.user}}</h3>
+    <div class="bar-two bar-container">
+        <div id="bar2" class="bar" score={{data.1.score}}></div>
+        <p class="user">{{data.1.user}}</p>
     </div>
-    <div class="leader">
-        <h2>{{data.2.score}}</h2>
-        <div class="rank-bar" id="third-ranked"></div>
-        <h3>{{data.2.user}}</h3>        
+    <div class="bar-one bar-container">
+        <div id="bar3" class="bar" score={{data.2.score}}></div>
+        <p class="user">{{data.2.user}}</p>
     </div>
-</div>
-{{/if}}
+    </section>
+    {{/if}}
+</section>

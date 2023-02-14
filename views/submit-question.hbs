@@ -1,31 +1,33 @@
-<h1>Submit a question</h1>
+<section id="submit-question-menu" class="main-section">
+    <h1>Submit a question</h1>
 
-<div class="submit-question-container">
-    <form action="/submit-question" method="POST">
-        <label>Emoji</label>
-        <input class="emoji-input" type="text" name="emoji">
+    <div class="submit-question-container">
+        <form action="/submit-question" method="POST">
+            <label>Emoji</label>
+            <input class="emoji-input" type="text" name="emoji">
 
-        <label>Question</label>
-        <input type="text" name="question" required>
+            <label>Question</label>
+            <input type="text" name="question" required>
 
-        <label>Category</label>
-        <select name="category">
-            <option value="Baldness">Baldness</option>
-            <option value="Attractiveness">Attractiveness</option>
-            <option value="Style">Style</option>
-            <option value="Programming skills">Programming Skills</option>
-        </select>
+            <label>Category</label>
+            <select name="category">
+                <option value="Baldness">Baldness</option>
+                <option value="Attractiveness">Attractiveness</option>
+                <option value="Style">Style</option>
+                <option value="Programming skills">Programming Skills</option>
+            </select>
 
-        <label>Is the question positive or negative for its category?</label>
-        <input type="checkbox" name="safe"/>
+            <label>Is the question positive or negative for its category?</label>
+            <input type="checkbox" name="safe"/>
 
-        <label>Does the question contain sensitive content?</label>
-        <input type="checkbox" name="safe"/>
+            <label>Does the question contain sensitive content?</label>
+            <input type="checkbox" name="safe"/>
 
-        <button type="submit">Submit question</button>
-    </form>
-</div>
+            <button type="submit">Submit question</button>
+        </form>
+    </div>
 
-{{#if error}}
-    <h1 class="error">{{error}}</h1>
-{{/if}}
+    {{#if error}}
+        <h1 class="error">{{error}}</h1>
+    {{/if}}
+</section>

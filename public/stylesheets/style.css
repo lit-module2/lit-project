@@ -1,21 +1,77 @@
-@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Comfortaa:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/futura-pt');
+
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* styling starts here */
 
 html {
   font-family: 'Bowlby One SC';
   font-size: 16px;
 }
 
+/* color palette */
+
+:root {
+  --br: 15px;
+  --primary-black: black;
+  --primary-orange: #FF8A5B;
+  --primary-yellow: #ffe066;
+  --primary-blue: #2be8eb;
+  --primary-pink:#F56882;
+  --basic-white: #fff;
+}
+
 /*  Login and register forms */
 
-.login-div {
-  background-color: blue;
-  
-}
-
-.login-form {
-  justify-content: center;
-}
-
+/* Common styles */
 
 body {
   padding: 0;
@@ -25,7 +81,7 @@ body {
 }
 
 .main {
-  background-color:gold;
+  background-color: var(--primary-black);
   padding:10vh 0;
   min-height:80vh;
 }
@@ -34,9 +90,25 @@ img {
   width:110px;
 }
 
-h1 {
+#app-name {
+  font-family:'Bowlby One SC';
   font-size:2.3rem;
-  color:white;
+  background: -webkit-linear-gradient(var(--primary-pink), var(--primary-yellow));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h1 {
+  font-size:1.8rem;
+  font-family:'Bowlby One SC';
+  color:var(--basic-white);
+  padding-bottom:5%;
+}
+
+h2, h3, h4, label {
+  font-family:'Futura PT', sans-serif;
+  font-weight:500;
+  font-size: 1.5rem;
 }
 
 header, nav {
@@ -45,11 +117,6 @@ header, nav {
   flex-direction:row;
   align-items: center;
   justify-content: space-around;
-  background-color:rgba(255, 255, 255, 0)
-}
-
-#navigation {
-  background-color:black;
 }
 
 header {
@@ -65,45 +132,232 @@ nav {
 }
 
 svg {
-  fill:white;
+  fill: white;
+  height:10vmin;
 }
 
-header > a > svg {
-  width:8vmin;
+a {
+  color: black;
+  text-decoration: none;
 }
 
-nav > a > svg {
-  width:10vmin;
+.main-section {
+  position: absolute;
+  margin: 0 5%;
+  min-width:80%;
+  padding: 5%;
+  height:75%;
+  border-radius:15px;
+  overflow-y: auto;
 }
 
-nav > svg:hover {
-  fill-rule:nonzero;
-  fill:black;
+/* Landing styles */
+
+#landing, #admin, #auth {
+  background-color: var(--primary-yellow);
 }
 
-.rank {
+/* Login and registration styles */
+
+.login-div {
+  background-color: blue;
+}
+
+.login-form {
+  justify-content: center;
+}
+
+/* Question menu styles */
+
+#question-menu {
+  background-color: var(--primary-yellow);
+}
+
+#question-container {
+  max-width: 80%;
+  margin: 15% auto;
+  text-align:center;
+}
+
+.question-text {
+  font-size:1.8rem;
+}
+
+.question-emoji {
+  font-size:6rem;
+  margin-bottom: 15%;
+}
+
+.answer-buttons-container {
+  position:absolute;
+  top: 55%;
+  left: 0%;
+}
+
+.answer-buttons-container > form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap:wrap;
+  align-content: center;
+  justify-content: center;
+  gap:8vmin;
+}
+
+.answer-button {
+  display:block;
+  background-color:var(--primary-orange);
+  border-style:none;
+  border-radius:10px;
+  width: 35vmin;
+  height: 15vmin;
+  color:white;
+  font-family:'Bowlby One SC';
+  font-size:1.2rem;
+  box-shadow: 3px 3px 3px 0px var(--primary-black);
+}
+
+.bouncy {
+  animation:bouncy 7s infinite linear;
   position:relative;
-  top:15vmin;
+}
+
+@keyframes bouncy {
+  0%{top:0em}
+  40%{top:0em}
+  43%{top:-0.9em}
+  46%{top:0em}
+  48%{top:-0.4em}
+  50%{top:0em}
+  100%{top:0em;}
+}
+
+.answer-button:active {
+  transform: translateX(2px) translateY(2px);
+  opacity:0.5;
+}
+
+/* Leaderboard menu styles */
+
+#leaderboard-menu {
+  background-color: var(--primary-blue);
+}
+
+.bar-graph {
+  position:relative;
+  top:25vmin;
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
 
-.leader {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-end;
+.bar-container {
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+.bar-graph .score {
+  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+  animation: fade-in-text 2.2s 0.1s forwards;
+}
+
+.bar-graph-vertical {
+  margin-top: 80px;
+  max-width: 680px;
+}
+
+.bar-graph-vertical .bar-container {
+  float: left;
+  height: 60vmin;
+  margin-right: 2vmin;
+  position: relative;
+  text-align: center;
   width: 10vmin;
 }
 
-.rank-bar {
-  background-color: black;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px;
-  width: 10vmin;
+.bar-graph-vertical .bar {
+  border-radius: 3px;
+  bottom: 40px;
+  position: absolute;
+  width: 40px;
+}
+
+.user {
+  margin-top: 50vmin;
+  text-align:center;
+}
+
+.bar-graph-two .bar::after {
+  -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+  -moz-animation: fade-in-text 2.2s 0.1s forwards;
+  animation: fade-in-text 2.2s 0.1s forwards;
+  content: attr(score);
+  left: 0;
+  margin: 0 auto;
+  position: absolute;
+  right: 0;
+  text-align: center;
+  top: -20px;
+}
+
+.bar-graph-two .bar-one .bar {
+  background-color: var(--primary-yellow);
+  -webkit-animation: show-bar-one-vertical 1.2s 0.1s forwards;
+  -moz-animation: show-bar-one-vertical 1.2s 0.1s forwards;
+  animation: show-bar-one-vertical 1.2s 0.1s forwards;
+}
+
+.bar-graph-two .bar-two .bar {
+  background-color: var(--primary-orange);
+  -webkit-animation: show-bar-two-vertical 1.2s 0.2s forwards;
+  -moz-animation: show-bar-two-vertical 1.2s 0.2s forwards;
+  animation: show-bar-two-vertical 1.2s 0.2s forwards;
+}
+
+.bar-graph-two .bar-three .bar {
+  background-color: var(--primary-pink);
+  -webkit-animation: show-bar-three-vertical 1.2s 0.3s forwards;
+  -moz-animation: show-bar-three-vertical 1.2s 0.3s forwards;
+  animation: show-bar-three-vertical 1.2s 0.3s forwards;
+}
+
+/* Bar Graph Vertical Animations */
+@-webkit-keyframes show-bar-one-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 40%;
+  }
+}
+
+@-webkit-keyframes show-bar-two-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 70%;
+  }
+}
+
+@-webkit-keyframes show-bar-three-vertical {
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
+}
+
+@-webkit-keyframes fade-in-text {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 #first-ranked {
@@ -118,7 +372,20 @@ nav > svg:hover {
   height:25vmin;
 }
 
-a {
-  color: black;
-  text-decoration: none;
+/* Submit question menu styles */
+
+#submit-question-menu {
+  background-color: var(--primary-pink);
+}
+
+/* Notifications menu styles */
+
+#notifications {
+  background-color: var(--primary-orange);
+}
+
+/* Profile menu styles */
+
+#profile {
+  background-color: var(--primary-orange);
 }
