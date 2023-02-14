@@ -528,7 +528,6 @@ a {
   animation: show-bar-three-vertical 1.2s 0.3s forwards;
 }
 
-/* Bar Graph Vertical Animations */
 @-webkit-keyframes show-bar-one-vertical {
   0% {
     height: 0;

@@ -1,5 +1,5 @@
 <section id="profile" class="main-section">
-  <h1>Welcome {{ username }}</h1>
+  <h1>Welcome {{username}}</h1>
   <div id="edit-profile-form">
     <form method="POST" action="/profile/edit">
       <div class="user-field user-field-edit">
@@ -30,13 +30,21 @@
       <div class="user-field user-field-edit">
         <label>🎂 <span class="user-info-text">Age</span></label>
         <br>
-        <input type="number" name="newDateOfBirth" placeholder={{age}} />
+        <input type="number" name="newAge" placeholder={{age}} />
       </div>
       <button type="submit" class="profile-button" id="save-changes-button">Save changes</button>
     </form>
   </div>
   <a href="/profile">Go back</a>
-  <form method="POST" action="/profile/edit">
+  <form method="POST" action="/profile/delete">
     <button type="submit" class="profile-button" id="delete-button">Delete account</button>
   </form>
 </section>
+
+{{#if update}}
+<h2 class="update-success">Info updated successfully!</h2>
+{{/if}}
+
+{{#if error}}
+<h2 class="error-message">{{error}}</h2>
+{{/if}}
