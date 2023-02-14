@@ -195,7 +195,7 @@ a {
 
 /* Landing styles */
 
-#landing {
+#landing, #admin, #auth {
   background-color: var(--primary-yellow);
 }
 

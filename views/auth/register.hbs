@@ -1,17 +1,17 @@
-<h1>Register Page  </h1>
-
-<form action="/auth/register" method="POST">
-  <label>Username</label>
-  <input type="text" name="username" placeholder="Username" maxlength="13">
-  <label>Email</label>
-  <input type="text" name="email" placeholder="Email">
-  <label>Password</label>
-  <input type="password" name="password" placeholder="********">
-  <label>Repeat password</label>
-  <input type="password" name="repeatedPassword" placeholder="********">
-  <button type="submit">Register</button>
-</form>
-
-{{#if error}}
-<h2>{{error}}</h2>
-{{/if}}
+<section id="auth" class="main-section">
+  <h1>Register Page  </h1>
+  <form action="/auth/register" method="POST">
+    <label>Username</label>
+    <input type="text" name="username" placeholder="Username" maxlength="13">
+    <label>Email</label>
+    <input type="text" name="email" placeholder="Email">
+    <label>Password</label>
+    <input type="password" name="password" placeholder="********">
+    <label>Repeat password</label>
+    <input type="password" name="repeatedPassword" placeholder="********">
+    <button type="submit">Register</button>
+  </form>
+  {{#if error}}
+  <h2>{{error}}</h2>
+  {{/if}}
+</section>
