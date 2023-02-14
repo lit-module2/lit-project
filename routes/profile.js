@@ -28,61 +28,69 @@ router.get('/edit', routeProtect.isUserLoggedIn, (req, res, next) => {
 // @access  User with user role only
 router.post('/edit', routeProtect.isUserLoggedIn, async (req, res, next) => {
   let user = req.session.currentUser;
+  let errors = []
   const { newUsername, newPassword, newEmail, newPhone, newGender, newAge } = req.body;
   try {
-    if (newUsername != undefined) {
-      console.log('test')
+    if (newUsername != '') {
       if (newUsername.length <= 13) {
-        console.log('test')
         const userInDB = await User.findOne({ username: newUsername });
         if (userInDB) {
-          res.render('profile/profile-edit', { error: `There already is a user with email ${newUsername}` });
+          errors.push(`There already is a user called ${newUsername}`);
           return;
         } else {
           const update = await User.findByIdAndUpdate(user._id, { username: newUsername});
         }
       }
     }
-    if (newEmail != undefined) {
+
+    if (newEmail != '') {
       const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if (!regexEmail.test(newEmail)) {
-        res.render('profile/profile-edit', { error: `Please enter a valid email!` });
+        errors.push('Email must have valid format!');
+        console.log(errors);
       }
       else {
         const update = await User.findByIdAndUpdate(user._id, { email: newEmail});
       }
     }
 
-    if (newPassword != undefined) {
+    if (newPassword != '') {
       const regexPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
       if (!regexPassword.test(newPassword)) {
-        res.render('profile/profile-edit', { error: 'Password needs to contain at least 6 characters, one number, one lowercase and one uppercase letter.' });
+        errors.push('Password needs to contain at least 6 characters, one number, one lowercase and one uppercase letter.');
       }
       else {
-          const salt = await bcrypt.genSalt(saltRounds);
-          const newHashedPassword = await bcrypt.hash(newPassword, salt);
-          const update = await User.findByIdAndUpdate(user._id, { hashedPassword: newHashedPassword});
-          res.render('profile/profile-edit', {error: error});
+        const salt = await bcrypt.genSalt(saltRounds);
+        const newHashedPassword = await bcrypt.hash(newPassword, salt);
+        const update = await User.findByIdAndUpdate(user._id, { hashedPassword: newHashedPassword});
       }
     }
 
-    if (newPhone != undefined) {
+    if (newPhone != '') {
         const update = await User.findByIdAndUpdate(user._id, { phone: newPhone});
         console.log(update);
         const newUser = await User.findById({_id: user._id});
         console.log(newUser);
         req.session.currentUser = newUser;
     }
-    if (newGender != undefined) {
+
+    if (newGender != '') {
         const update = await User.findByIdAndUpdate(user._id, { gender: newGender});
     }
-    if (newAge != undefined) {
+
+    if (newAge != '') {
         const update = await User.findByIdAndUpdate(user._id, { age: newAge});
     }
     user = await User.findById({_id: user._id});
     console.log(user);
     req.session.currentUser = user;
-    res.redirect('/profile');
+    let newUser = []
+    if (errors = []) {
+      res.render('profile/profile', {user: user, validate: true});
+    }
+    else {
+      res.render('profile/profile', {user: user, error: errors});
+    }
   } catch (error) {
     next(error)
   }
