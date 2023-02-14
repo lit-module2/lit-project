@@ -191,6 +191,41 @@ a {
 
 .landing-text-container {
   margin: 5% 0;
+  
+}
+
+#ask-container {
+  margin: 5% 0;
+  transform: translateY(100%);
+  animation: slide-in 2s ease-in forwards;
+}
+
+#answer-container {
+  opacity:0;
+  margin: 5% 0;
+  transform: translateY(100%);
+  animation: slide-in 2s ease-in forwards;
+  animation-delay:500ms;
+}
+
+#admire-container {
+  opacity:0;
+  margin: 5% 0;
+  transform: translateY(100%);
+  animation: slide-in 2s ease-in forwards;
+  animation-delay:1000ms;
+}
+
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .landing-subtitle {
@@ -299,6 +334,21 @@ a {
 #early-access-button:active {
   transform: translateX(4px) translateY(4px);
   opacity:0.5;
+}
+
+.landing-buttons {
+  opacity:0;
+  animation: fade-in 1s linear forwards;
+  animation-delay:5000ms;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 /* Admin view styles */
