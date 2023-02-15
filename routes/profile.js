@@ -28,7 +28,7 @@ router.get('/edit', routeProtect.isUserLoggedIn, (req, res, next) => {
 // @access  User with user role only
 router.post('/edit', routeProtect.isUserLoggedIn, async (req, res, next) => {
   let user = req.session.currentUser;
-  let errors = []
+  let errors = [];
   const { newUsername, newPassword, newEmail, newPhone, newGender, newAge } = req.body;
   try {
     if (newUsername != '') {
@@ -96,6 +96,22 @@ router.post('/logout', routeProtect.isLoggedIn, (req, res, next) => {
       res.render('landing/landing', {layout: 'landing/landing-layout'});
     }
   });
+})
+
+router.post('/delete', routeProtect.isUserLoggedIn, async (req, res, next) => {
+  user = req.session.currentUser;
+  try {
+    const update = await User.findByIdAndUpdate(user._id, { deletedAccount: true});
+    req.session.destroy((err) => {
+      if (err) {
+        next(err)
+      } else {
+        res.render('landing/landing', {layout: 'landing/landing-layout'});
+      }
+    });
+  } catch (error) {
+    next(error);
+  }
 })
   
 router.get('/logout', (req, res, next) => {

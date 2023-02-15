@@ -40,8 +40,10 @@ router.post("/login", async function (req, res, next) {
     const userInDB = await User.findOne({username: username});
     if(!userInDB) {
       res.render ("auth/login", {error:`${username} doesn't exist!`})
-      return  
     } else {
+      if(userInDB.deletedAccount) {
+        res.render ("auth/login", {error:`This account has been deleted!`})
+      }
       const passwordMatch = await bcrypt.compare(password, userInDB.hashedPassword)
       if(passwordMatch) {
         req.session.currentUser = userInDB;
@@ -98,7 +100,8 @@ router.post ("/register", async (req, res, next) => {
       const salt = await bcrypt.genSalt(saltRounds);
       const hashedPassword = await bcrypt.hash(password, salt);
       const user = await User.create({ username, email, hashedPassword });
-      res.render('profile/profile', user);
+      const registration = {registration: 'Registration successful!'};
+      res.render('auth/login', registration);
     }
   } catch (error) {
     next(error)
