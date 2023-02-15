@@ -628,5 +628,9 @@ a {
 /* Profile menu styles */
 
 #profile {
-  background-color: var(--primary-orange);
+  background-color: var(--basic-white);
+}
+
+#profile h1 {
+  color: var(--primary-black);
 }

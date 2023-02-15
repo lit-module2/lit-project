@@ -1,7 +1,9 @@
 const express = require ("express");
 const async = require("hbs/lib/async");
 const router = express.Router();
-const User = require ("../models/User")
+const User = require ("../models/User");
+const UserAnswer = require ("../models/UserAnswer");
+const Question = require ("../models/Question")
 const routeProtect = require("../middleware/index");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
@@ -112,6 +114,30 @@ router.post('/delete', routeProtect.isUserLoggedIn, async (req, res, next) => {
   } catch (error) {
     next(error);
   }
+})
+
+router.get('/approved-questions', routeProtect.isUserLoggedIn, async (req, res, next) => {
+  const user = req.session.currentUser;
+  try {
+    const answers = await UserAnswer.find({}).populate('questionId');
+    const answersByQuestionAuthor = answers.filter(answer => ((String(answer.questionId._author) === String(user._id))));
+    const questions = await Question.find({_author: user._id, _approved: true});
+    let questionData = [];
+    for (let question of questions) {
+        let timesAnswered = 0;
+        for (let answer of answersByQuestionAuthor) {            
+            if (String(answer.questionId._id) === String(question._id)) {
+              timesAnswered++;
+            }
+        }
+        questionData.push({emoji: question.emoji, category: question.category, question: question.question, timesAnswered: timesAnswered});
+    }
+    questionData = questionData.sort((a, b) => b.timesAnswered - a.timesAnswered);
+    res.render('profile/user-questions', {data: questionData});
+}
+catch (error) {
+    next(error)
+}
 })
   
 router.get('/logout', (req, res, next) => {

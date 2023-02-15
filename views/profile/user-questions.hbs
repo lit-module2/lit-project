@@ -1,0 +1,15 @@
+<section id="profile" class="main-section">
+    <h1>Approved questions</h1>
+    {{#if data}}
+        {{#each data}}
+        <div class="question-container">
+            <h2 class="question-emoji">{{this.emoji}}</h2>
+            <h2 class="question-category">{{this.category}}</h2>
+            <h2 class="question-text">{{this.question}}</h2>
+            <h2 class="question-activity">Times answered: {{this.timesAnswered}}</h2>
+        </div>
+        {{/each}}
+    {{else}}
+        <h2>You haven't had any questions approved yet!</h2>
+    {{/if}}
+</section>
