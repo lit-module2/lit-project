@@ -13,7 +13,7 @@ router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
     const questions = await Question.find({_approved: true});
     const randomQuestion = questions[Math.floor(Math.random() * questions.length )];
 
-    const users = await User.find({});
+    const users = await User.find({role: 'user', deletedAccount: false});
     const shuffle = users.sort(() => 0.5 - Math.random()) //shuffles list in random order
 
     const randomUsers = shuffle.slice(0,4);
