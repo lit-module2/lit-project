@@ -20,7 +20,7 @@ router.get('/', routeProtect.isUserLoggedIn, (req, res, next) => {
 // @access  User with user role only
 router.get('/edit', routeProtect.isUserLoggedIn, (req, res, next) => {
     const user = req.session.currentUser;
-    res.render('profile/profile-edit', user);
+    res.render('profile/profile-edit', {user});
 })
 
 // @desc    Edits user information in DB
@@ -36,24 +36,20 @@ router.post('/edit', routeProtect.isUserLoggedIn, async (req, res, next) => {
         const userInDB = await User.findOne({ username: newUsername });
         if (userInDB) {
           errors.push(`There already is a user called ${newUsername}`);
-          return;
         } else {
           const update = await User.findByIdAndUpdate(user._id, { username: newUsername});
         }
       }
     }
-
     if (newEmail != '') {
       const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
       if (!regexEmail.test(newEmail)) {
         errors.push('Email must have valid format!');
-        console.log(errors);
       }
       else {
         const update = await User.findByIdAndUpdate(user._id, { email: newEmail});
       }
     }
-
     if (newPassword != '') {
       const regexPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
       if (!regexPassword.test(newPassword)) {
@@ -65,31 +61,24 @@ router.post('/edit', routeProtect.isUserLoggedIn, async (req, res, next) => {
         const update = await User.findByIdAndUpdate(user._id, { hashedPassword: newHashedPassword});
       }
     }
-
     if (newPhone != '') {
         const update = await User.findByIdAndUpdate(user._id, { phone: newPhone});
-        console.log(update);
-        const newUser = await User.findById({_id: user._id});
-        console.log(newUser);
-        req.session.currentUser = newUser;
     }
-
     if (newGender != '') {
         const update = await User.findByIdAndUpdate(user._id, { gender: newGender});
     }
-
     if (newAge != '') {
         const update = await User.findByIdAndUpdate(user._id, { age: newAge});
     }
     user = await User.findById({_id: user._id});
-    console.log(user);
     req.session.currentUser = user;
-    let newUser = []
-    if (errors = []) {
-      res.render('profile/profile', {user: user, validate: true});
+    if (errors.length===0) {
+      const update = {update: true};
+      res.render('profile/profile-edit', {user, update});
     }
     else {
-      res.render('profile/profile', {user: user, error: errors});
+      const error = {error: errors};
+      res.render('profile/profile-edit', {user, error});
     }
   } catch (error) {
     next(error)

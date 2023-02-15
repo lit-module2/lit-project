@@ -1,11 +1,11 @@
 <section id="profile" class="main-section">
-  <h1>Welcome {{username}}</h1>
+  <h1>Welcome {{user.username}}</h1>
   <div id="edit-profile-form">
-    <form method="POST" action="/profile/edit">
+    <form method="POST" action="/profile/edit" id="edit-form">
       <div class="user-field user-field-edit">
         <label>👤 <span class="user-info-text">Username</span></label>
         <br>
-        <input type="text" name="newUsername" placeholder={{username}} />
+        <input type="text" name="newUsername" placeholder={{user.username}} />
       </div>
       <div class="user-field user-field-edit">
         <label>🔐 <span class="user-info-text">Password</span></label>
@@ -15,22 +15,22 @@
       <div class="user-field user-field-edit">
         <label>📧 <span class="user-info-text">Email</span></label>
         <br>
-        <input type="text" name="newEmail" placeholder={{email}} />
+        <input type="text" name="newEmail" placeholder={{user.email}} />
       </div>
       <div class="user-field user-field-edit">
         <label>📱 <span class="user-info-text">Phone</span></label>
         <br>
-        <input type="text" name="newPhone" placeholder={{phone}} />
+        <input type="text" name="newPhone" placeholder={{user.phone}} />
       </div>
       <div class="user-field user-field-edit">
         <label>👫 <span class="user-info-text">Gender</span></label>
         <br>
-        <input type="text" name="newGender" placeholder={{gender}} />
+        <input type="text" name="newGender" placeholder={{user.gender}} />
       </div>
       <div class="user-field user-field-edit">
         <label>🎂 <span class="user-info-text">Age</span></label>
         <br>
-        <input type="number" name="newAge" placeholder={{age}} />
+        <input type="number" name="newAge" placeholder={{user.age}} />
       </div>
       <button type="submit" class="profile-button" id="save-changes-button">Save changes</button>
     </form>
@@ -39,12 +39,25 @@
   <form method="POST" action="/profile/delete">
     <button type="submit" class="profile-button" id="delete-button">Delete account</button>
   </form>
+  {{#if update}}
+  <h2 class="update-success">Info updated successfully!</h2>
+  {{/if}}
+  {{#if error}}
+  {{#each error}}
+  <h2 class="error-message">{{this}}</h2>
+  {{/each}}
+  {{/if}}
 </section>
+<script>
+  const form = document.getElementById('edit-form');
+  const inputs = form.querySelectorAll('input');
+  const submitButton = document.getElementById('save-changes-button');
+  submitButton.disabled = true;
+  inputs.forEach(input => {
+    input.addEventListener('input', () => {
+      const anyText = Array.from(inputs).some(input => input.value !== '');
+      submitButton.disabled = !anyText;
+    });
+  });
+</script>
 
-{{#if update}}
-<h2 class="update-success">Info updated successfully!</h2>
-{{/if}}
-
-{{#if error}}
-<h2 class="error-message">{{error}}</h2>
-{{/if}}
