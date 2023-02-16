@@ -344,8 +344,78 @@ a {
 
 #admin {
   background-color: var(--primary-yellow);
+  background-image:url(/images/question-section-background.svg);
+  background-size:cover;
 }
 
+#logout-button-admin {
+  font-family:'Futura PT';
+  font-size:1rem;
+  padding: 2% 4% 2% 4%;
+  background:linear-gradient(rgb(150, 0, 0), red);
+  color:white;
+  border-style:none;
+  border-radius:10px;
+  width:20vmin;
+  height:10vmin;
+}
+
+.admin-container {
+  display:flex;
+  flex-direction:row;
+  border-style: solid;
+  gap: 3vmin;
+  align-items:center;
+  border-width: 2px;
+  border-color:var(--primary-black);
+  border-radius:15px;
+  background-color:var(--secondary-yellow);
+  padding: 5%;
+  margin: 5% auto;
+}
+
+.admin-emoji {
+  font-size: 2rem;
+}
+
+.admin-text {
+  font-style:italic;
+  background-color:var(--primary-yellow);
+  padding: 5%;
+  margin: 4% 0;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  width:fit-content;
+}
+
+.admin-category {
+  font-size:1rem;
+}
+
+#approve, #reject {
+  width: 20vmin;
+}
+
+#approve {
+  font-family:'Futura PT';
+  padding: 5%;
+  font-size:1rem;
+  color:white;
+  border-style:none;
+  border-radius:10px;
+  text-align:center;
+  background: linear-gradient(rgb(0, 60, 0), rgb(0, 140, 0));
+}
+
+#reject {
+  font-family:'Futura PT';
+  font-size:1rem;
+  padding: 5%;
+  background:linear-gradient(rgb(150, 0, 0), red);
+  color:white;
+  border-style:none;
+  border-radius:10px;
+}
 
 /* Login and registration styles */
 
