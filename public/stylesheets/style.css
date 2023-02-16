@@ -647,7 +647,7 @@ a {
 .user-info-text {
   font-weight:400;
   color:black;
-  font-size:1.4rem;
+  font-size:1.2rem;
 }
 
 .button-profile-container {
@@ -659,13 +659,11 @@ a {
 }
 
 .profile-button {
-  padding: 4%;
+  padding: 3% 4% 3% 4%;
   background:linear-gradient(black, rgb(70, 70, 70));
   border-radius:10px;
   font-family:'Futura PT';
   color:white;
-  text-align: center;
-  align-self: center;
   font-size:1rem;
 }
 
@@ -677,7 +675,7 @@ a {
   color:white;
   border-style:none;
   border-radius:10px;
-  margin-top: 50%;
+  margin-top: 56%;
 }
 
 .logout-container > form {
@@ -686,7 +684,7 @@ a {
   justify-content: space-evenly;
 }
 
-#save-changes-button, #delete-button, #logout-button {
+#delete-button, #logout-button {
   font-family:'Futura PT';
   padding: 2% 4% 2% 4%;
   font-size:1rem;
@@ -694,4 +692,59 @@ a {
   border-style:none;
   border-radius:10px;
   text-align:center;
+}
+
+#save-changes-button {
+  font-family:'Futura PT';
+  padding: 3% 4% 3% 4%;
+  font-size:1rem;
+  color:white;
+  border-style:none;
+  border-radius:10px;
+  text-align:center;
+  background: linear-gradient(rgb(0, 60, 0), rgb(0, 140, 0));
+}
+
+.user-field-edit > label {
+  display: inline-block;
+  width: 30vmin;
+  text-align:left;
+}
+
+input {
+  padding: 1%;
+  border-radius: 5px;
+  border:none;
+  opacity:0.5;
+  background-color:white;
+}
+
+input:focus {
+  opacity:1;
+  background-color:white;
+}
+
+#go-back-container, #save-changes-container {
+  padding: 4%;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+}
+
+.delete-container > form {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#delete-button {
+  font-family:'Futura PT';
+  font-size:1rem;
+  padding: 2% 4% 2% 4%;
+  background:linear-gradient(rgb(150, 0, 0), red);
+  color:white;
+  border-style:none;
+  border-radius:10px;
+  margin-top: 40%;
 }

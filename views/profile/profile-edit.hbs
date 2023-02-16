@@ -3,51 +3,53 @@
   <div id="edit-profile-form">
     <form method="POST" action="/profile/edit" id="edit-form">
       <div class="user-field user-field-edit">
-        <label>👤 <span class="user-info-text">Username</span></label>
-        <br>
+        <label class="user-info-text">👤 Username</label>
         <input type="text" name="newUsername" placeholder={{user.username}} />
       </div>
       <div class="user-field user-field-edit">
-        <label>🔐 <span class="user-info-text">Password</span></label>
-        <br>
+        <label class="user-info-text">🔐 Password</label>
         <input type="password" name="newPassword" placeholder="********" />
       </div>
       <div class="user-field user-field-edit">
-        <label>📧 <span class="user-info-text">Email</span></label>
-        <br>
+        <label class="user-info-text">📧 Email</label>
         <input type="text" name="newEmail" placeholder={{user.email}} />
       </div>
       <div class="user-field user-field-edit">
-        <label>📱 <span class="user-info-text">Phone</span></label>
-        <br>
+        <label class="user-info-text">📱 Phone</label>
         <input type="text" name="newPhone" placeholder={{user.phone}} />
       </div>
       <div class="user-field user-field-edit">
-        <label>👫 <span class="user-info-text">Gender</span></label>
-        <br>
+        <label class="user-info-text">👫 Gender</label>
         <input type="text" name="newGender" placeholder={{user.gender}} />
       </div>
       <div class="user-field user-field-edit">
-        <label>🎂 <span class="user-info-text">Age</span></label>
-        <br>
+        <label class="user-info-text">🎂 Age</label>
         <input type="number" name="newAge" placeholder={{user.age}} />
       </div>
-      <button type="submit" class="profile-button" id="save-changes-button">Save changes</button>
+      <div id="edit-form-button-container">
+        <div id="go-back-container">
+          <a href="/profile" class="profile-button">Go back</a>
+        </div>
+        <div id="save-changes-container">
+          <button type="submit" class="profile-button" id="save-changes-button">Save changes</button>
+        </div>
+      </div>
     </form>
   </div>
-  <div class="button-profile-container">
-    <a href="/profile" class="profile-button">Go back</a>
+  <div class="delete-container">
+    <form method="POST" action="/profile/delete">
+      <button type="submit" class="profile-button" id="delete-button">Delete account</button>
+    </form>
   </div>
-  <form method="POST" action="/profile/delete">
-    <button type="submit" class="profile-button" id="delete-button">Delete account</button>
-  </form>
   {{#if update}}
-  <h2 class="update-success">Info updated successfully!</h2>
-  {{/if}}
-  {{#if error}}
-  {{#each error}}
-  <h2 class="error-message">{{this}}</h2>
-  {{/each}}
+  <div id="edit-messages-box">
+    <h2 class="update-success">Info updated successfully!</h2>
+    {{/if}}
+    {{#if error}}
+    {{#each error}}
+    <h2 class="error-message">{{this}}</h2>
+    {{/each}}
+  </div>
   {{/if}}
 </section>
 <script>
