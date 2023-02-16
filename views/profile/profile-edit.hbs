@@ -41,13 +41,14 @@
       <button type="submit" class="profile-button" id="delete-button">Delete account</button>
     </form>
   </div>
-  {{#if update}}
+  
   <div id="edit-messages-box">
-    <h2 class="update-success">Info updated successfully!</h2>
-    {{/if}}
+  {{#if update}}
+    <h2 class="update-success">✅ Info updated successfully!</h2>
+  {{/if}}
     {{#if error}}
     {{#each error}}
-    <h2 class="error-message">{{this}}</h2>
+    <h2 class="error-message">❌{{this}}</h2>
     {{/each}}
   </div>
   {{/if}}

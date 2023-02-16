@@ -3,10 +3,12 @@
     {{#if data}}
         {{#each data}}
         <div class="question-container">
-            <h2 class="question-emoji">{{this.emoji}}</h2>
-            <h2 class="question-category">{{this.category}}</h2>
-            <h2 class="question-text">{{this.question}}</h2>
-            <h2 class="question-activity">Times answered: {{this.timesAnswered}}</h2>
+            <h2 class="question-emoji-profile">{{this.emoji}}</h2>
+            <div class="question-info">
+                <h2 class="question-category">{{this.category}}</h2>
+                <h2 class="question-text">{{this.question}}</h2>
+                <h2 class="question-activity">Times answered: {{this.timesAnswered}}</h2>
+            </div>
         </div>
         {{/each}}
     {{else}}

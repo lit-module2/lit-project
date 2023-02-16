@@ -630,6 +630,7 @@ a {
 
 #profile h1 {
   color: var(--primary-black);
+  -webkit-text-stroke: white;
 }
 
 .user-field {
@@ -748,3 +749,68 @@ input:focus {
   border-radius:10px;
   margin-top: 40%;
 }
+
+#edit-messages-box {
+  position: absolute;
+  bottom: 20%;
+}
+
+#edit-messages-box > .update-success {
+  font-size: 1.2rem;
+  font-family: 'Futura PT';
+  animation: fade-out 1s linear forwards;
+  animation-delay:1000ms;
+}
+
+@keyframes fade-out {
+0% {
+  opacity: 1;
+}
+100% {
+  opacity: 0;
+}
+}
+
+#edit-messages-box > .error-message {
+  font-size: 0.8rem;
+  font-family: 'Futura PT';
+  animation: fade-out 2s linear forwards;
+  animation-delay:4000ms;
+  text-align:justify;
+  max-width: 80vmin;
+}
+
+.question-container {
+  display:flex;
+  flex-direction:row;
+  border-style: solid;
+  gap: 3vmin;
+  align-items:center;
+  border-width: 2px;
+  border-color:var(--primary-black);
+  border-radius:15px;
+  background-color:var(--profile-grey);
+  padding: 3%;
+  margin: 3% auto;
+}
+
+.question-emoji-profile {
+  font-size: 2rem;
+}
+
+.question-category, .question-text, .question-activity {
+  color:black;
+  font-size: 1rem;
+  text-align:justify;
+  margin: 1% 0;
+}
+
+.question-text {
+  font-style:italic;
+  background-color:var(--profile-lightgrey);
+  padding: 2%;
+  font-size: 0.8rem;
+  border-radius: 5px;
+}
+
+
