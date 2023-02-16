@@ -94,7 +94,7 @@ router.post ("/register", async (req, res, next) => {
   try {
     const userInDB = await User.findOne({ username: username });
     if (userInDB) {
-      res.render('auth/login', { error: `There already is a user with email ${email}` });
+      res.render('auth/login', { error: `There already is a user with username ${username}` });
       return;
     } else {
       const salt = await bcrypt.genSalt(saltRounds);

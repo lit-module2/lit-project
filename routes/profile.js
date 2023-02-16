@@ -34,7 +34,7 @@ router.post('/edit', routeProtect.isUserLoggedIn, async (req, res, next) => {
   const { newUsername, newPassword, newEmail, newPhone, newGender, newAge } = req.body;
   try {
     if (newUsername != '') {
-      if (newUsername.length <= 13) {
+      if (newUsername.length <= 11) {
         const userInDB = await User.findOne({ username: newUsername });
         if (userInDB) {
           errors.push(`There already is a user called ${newUsername}`);

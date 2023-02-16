@@ -369,13 +369,13 @@ a {
 }
 
 #question-container {
-  max-width: 80%;
+  max-width: 90%;
   margin: 15% auto;
   text-align:center;
 }
 
-.question-text {
-  font-size:1.8rem;
+.question-menu-text {
+  font-size:1.6rem;
 }
 
 .question-emoji {
@@ -385,7 +385,7 @@ a {
 
 .answer-buttons-container {
   position:absolute;
-  top: 55%;
+  top: 65%;
   left: 0%;
 }
 
@@ -395,19 +395,19 @@ a {
   flex-wrap:wrap;
   align-content: center;
   justify-content: center;
-  gap:8vmin;
+  gap:4vmin;
 }
 
 .answer-button {
   display:block;
-  background:linear-gradient(var(--primary-orange), var(--primary-pink));
+  background:linear-gradient(rgb(17,17,17), rgb(70, 70, 70));
   border-style:none;
   border-radius:10px;
-  width: 35vmin;
+  width: 40vmin;
   height: 15vmin;
   color:white;
   font-family:'Bowlby One SC';
-  font-size:1.2rem;
+  font-size:1.1rem;
   box-shadow: 3px 3px 3px 0px var(--primary-black);
 }
 
