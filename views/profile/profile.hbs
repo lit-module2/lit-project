@@ -17,17 +17,18 @@
       <h3 class="user-info">🎂 <span class="user-info-text">{{age}}</span></h3>
     </div>
   </div>
-
-  <div id="edit-profile-container">
+  <div class="button-profile-container">
     <a href="/profile/edit" class="profile-button" id="edit-profile-button">Edit profile</a>
   </div>
 
-  <div id="profile-questions-container">
+  <div class="button-profile-container">
     <a href="/profile/approved-questions" class="profile-button" id="profile-questions-viewer">View approved questions</a>
   </div>
 
+  <div class="logout-container">
   <form action="/profile/logout" method="POST">
-    <button type="submit" class="logout-button">Log out</button>
+    <button type="submit" id="logout-button">Log out</button>
   </form>
+  </div>
 </section>
 
