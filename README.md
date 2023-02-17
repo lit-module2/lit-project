@@ -73,7 +73,7 @@ Admins
 
 ## Models
 
-#### User:
+#### User
 
 ```js
 const userSchema = new Schema(
@@ -102,7 +102,7 @@ const userSchema = new Schema(
 )
 ```
 
-#### Question:
+#### Question
 
 ```js
 const questionSchema = new Schema(
