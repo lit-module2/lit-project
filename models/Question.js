@@ -15,7 +15,7 @@ const questionSchema = new Schema(
     },
     category: {
         type: String,
-        enum: ['Baldness', 'Attractiveness', 'Style', 'Programming skills'],
+        enum: ['Calvicie', 'Atractivo', 'Estilo', 'Ironhacker', 'Carisma', 'Buena vibra', 'Locura', 'Fitness'],
         required: true,
     },
     // choose whether the question has a positive affect on its category or a negative one
