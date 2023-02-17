@@ -40,7 +40,6 @@ npm run dev
 ---
 
 ## Wireframes
-Substitute this image with an image of your own app wireframes or designs
 
 ![](docs/lit-wireframes.png)
 ![](docs/lit-wireframes2.png)
@@ -203,12 +202,12 @@ const userAnswerSchema = new Schema(
 | Question | GET | /question   | Users only | |          |
 | Question | POST | /question/:questionId  | Users only | |          |
 | Submit Question | GET | /submit-question   | Users only | |          |
-| Submit Question | POST | /submit-question   | Users only | | { emoji, question, category, effectCheck, safeCheck }          |
+| Submit Question | POST | /submit-question   | Users only | { emoji, question, category, effectCheck, safeCheck } |         |
 | Leaderboard | GET | /leaderboard   | Users only | |          |
 | Leaderboard | GET | /leaderboard?category={query}   | Users only | |          |
 | Notifications | GET | /notifications   | Users only | |          |
 | Admin | GET | /admin   | Admin only | |          |
-| Admin | POST | /admin/:questionId   | Admin only only | |          |
+| Admin | POST | /admin/:questionId   | Admin only | |          |
 
 ---
 
