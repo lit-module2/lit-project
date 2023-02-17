@@ -18,7 +18,6 @@ router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
 router.get('/category', routeProtect.isUserLoggedIn, async (req, res, next) => {
     // we query all user answers and then filter out the answers to questions that belong to the queried category
     const { category } = req.query;
-    console.log(category);
     try {
         const actions = await UserAnswer.find({}).populate('questionId');
         const actionsByCategory = actions.filter(action => ((action.questionId.category === category)));
@@ -41,11 +40,9 @@ router.get('/category', routeProtect.isUserLoggedIn, async (req, res, next) => {
         scores.push({user: user.username, score: userScore});
         }
         scores = scores.sort((a, b) => b.score - a.score);
-        console.log(scores)
         res.render('leaderboard', {data: scores, category: category});
     }
     catch (error) {
-        console.log(error);
         res.render('leaderboard');
     }
 })

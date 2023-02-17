@@ -1,9 +1,7 @@
 <section id="submit-question-menu" class="main-section">
     <h1>Submit a question</h1>
-
     <div class="submit-question-container">
         <form action="/submit-question" method="POST">
-
             <div class="user-field user-field-edit">
                 <label class="user-info-text" id="submit-question-emoji">Emoji</label>
                 <input id="submit-question-emoji-input" class="emoji-input" type="text" name="emoji">
@@ -13,7 +11,6 @@
                 <br>
                 <textarea id="question-input" type="text" name="question" maxlength="170" required></textarea>
             </div>      
-
             <div class="user-field user-field-edit">
                 <select name="category" id="submit-question-option-selector">
                     <option value="Attractiveness">Attractiveness</option>
@@ -22,17 +19,14 @@
                     <option value="Programming skills">Programming Skills</option>
                 </select>
             </div>
-
             <div class="user-field user-field-edit" id="submit-question-check-field">
                 <label class="user-info-text">Is it a positive question?</label>
                 <input type="checkbox" name="safe" checked/>
             </div>
-
             <div class="user-field user-field-edit" id="submit-question-check-field">
                 <label class="user-info-text">Does it have sensitive content?</label>
                 <input type="checkbox" name="safe"/>
             </div>
-
             <div id="login-container">
                 <button type="submit" id="login-button">Submit question</button>
             </div>

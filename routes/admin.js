@@ -22,7 +22,6 @@ router.get('/', routeProtect.isAdminLoggedIn, async (req, res, next) => {
 router.post('/:questionId', routeProtect.isAdminLoggedIn, async (req, res, next) => {
   const questionId = req.params.questionId;
   const { approval } = req.body;
-  console.log(approval === 'true');
   if (approval === 'true') {
     try {
         const approvalUpdate = await Question.findByIdAndUpdate(questionId, {_approved: true});

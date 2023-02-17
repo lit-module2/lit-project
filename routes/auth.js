@@ -21,8 +21,8 @@ router.get('/login', routeProtect.isNotLoggedIn, (req, res, next) => {
 
 // @desc    Logs user into the app
 // @route   POST /auth/login
-// @access  Public
-router.post("/login", async function (req, res, next) {
+// @access  Non-users only
+router.post("/login", routeProtect.isNotLoggedIn, async function (req, res, next) {
   const {username, password} = req.body;
   errors = []
   if(!username ||!password) {
@@ -61,15 +61,15 @@ router.post("/login", async function (req, res, next) {
 
 // @desc    Displays the register page and form
 // @route   GET /auth/signup
-// @access  Public
+// @access  Non-users only
 router.get ("/register", routeProtect.isNotLoggedIn, (req, res, next) => {
   res.render("auth/register")
 })
 
 // @desc    Creates a new user in DB
 // @route   POST /auth/register
-// @access  Public
-router.post ("/register", async (req, res, next) => {
+// @access  Non-users only
+router.post ("/register", routeProtect.isNotLoggedIn, async (req, res, next) => {
   const { username, email, password, repeatedPassword } = req.body;
   const errors = [];
   const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;

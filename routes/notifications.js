@@ -14,7 +14,6 @@ router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
     const last24Hours = new Date((Date.now() - 24*60*60*1000));
     try {
         const actions = await UserAnswer.find({userAnswered: user._id, userAsked: { $ne: user._id }, createdAt: { $gte: last24Hours}}).populate('userAsked').populate('questionId');
-        console.log(actions);
         const notificationData = actions.map(elem => {
             return {
                 questionCategory: elem.questionId.category,
@@ -22,7 +21,6 @@ router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
                 userAsked: elem.userAsked.username
             }
         })
-        console.log(notificationData);
         res.render('notifications', {data: notificationData});
     }
     catch (error) {
