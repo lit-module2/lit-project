@@ -77,7 +77,7 @@ app.use(function(err, req, res, next) {
     res.render('404', { path: req.url });
   } else {
     res.status(err.status || 500);
-    res.render('error', {layout: 'landing/landing-layout'});
+    res.render('error');
   }
 });
 
