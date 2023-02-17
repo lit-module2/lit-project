@@ -23,6 +23,11 @@
     <div class="leaderboard-category-selector">
         <form action="/leaderboard/category" method="GET">
             <select name="category" id="leaderboard-option-selector">
+                {{#if category}}
+                <option>{{category}}</option>
+                {{else}}
+                <option>Pick a category!</option>
+                {{/if}}
                 <option value="Calvicie">Calvicie</option>
                 <option value="Atractivo">Atractivo</option>
                 <option value="Estilo">Estilo</option>
