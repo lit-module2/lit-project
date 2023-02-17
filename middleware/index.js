@@ -10,8 +10,13 @@ function isUserLoggedIn (req, res, next) {
     if (req.session.currentUser && req.session.currentUser.role === 'user') {
         next();
     } else {
+        if (req.session.currentUser && req.session.currentUser.role === 'admin') {
+            res.redirect('/admin');
+        } else {
         res.redirect('/auth');
+        }
     }
+
 }
 
 function isAdminLoggedIn (req, res, next) {
