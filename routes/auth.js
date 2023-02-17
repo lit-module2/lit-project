@@ -24,31 +24,34 @@ router.get('/login', routeProtect.isNotLoggedIn, (req, res, next) => {
 // @access  Public
 router.post("/login", async function (req, res, next) {
   const {username, password} = req.body;
+  errors = []
   if(!username ||!password) {
-    res.render("auth/login", {error: "Please enter a username and a password!"});
-    return;
+    errors.push("Please enter a username and a password!");
   }
   try {
     // Usamos el username para encontrar los usuarios.
     const userInDB = await User.findOne({username: username});
     if(!userInDB) {
-      res.render ("auth/login", {error:`${username} doesn't exist!`})
+      errors.push("That username doesn't exist!");
     } else {
       if(userInDB.deletedAccount) {
-        res.render ("auth/login", {error:`This account has been deleted!`})
+        errors.push("This account has been deleted!");
       }
       const passwordMatch = await bcrypt.compare(password, userInDB.hashedPassword)
-      if(passwordMatch) {
-        req.session.currentUser = userInDB;
-        if (req.session.currentUser.role === 'user') {
-          res.redirect('/question');
-        }
-        else {
-          res.redirect('/admin');
-        }
-      } else {
-        res.render("auth/login", {error: "Incorrect username or password"})
+      if(!passwordMatch) {
+          errors.push('Incorrect username or password!');
       }
+    }  
+    if (errors.length === 0) {
+      req.session.currentUser = userInDB;
+      if (req.session.currentUser.role === 'user') {
+        res.redirect('/question');
+      }
+      else {
+        res.redirect('/admin');
+      }
+    } else {
+      res.render("auth/login", {error: errors});
     }
   } catch (error) {
     next (error)
@@ -68,31 +71,35 @@ router.get ("/register", routeProtect.isNotLoggedIn, (req, res, next) => {
 // @access  Public
 router.post ("/register", async (req, res, next) => {
   const { username, email, password, repeatedPassword } = req.body;
-
+  const errors = [];
   const regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if(!regexEmail.test(email)) {
-    res.render('auth/register', { error: `Please enter a valid email!` });
+    errors.push('Please enter a valid email!')
   }
   const regexPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regexPassword.test(password)) {
-    res.render('auth/register', { error: 'Password needs to contain at least 6 characters, one number, one lowercase and one uppercase letter.' });
+    errors.push('Password needs to contain at least 6 characters, one number, one lowercase and one uppercase letter.')
   }
   const salt = await bcrypt.genSalt(saltRounds);
   const hashedFirstPassword = await bcrypt.hash(password, salt);
   const hashedSecondPassword = await bcrypt.hash(repeatedPassword, salt);
   if (hashedFirstPassword!=hashedSecondPassword) {
-    res.render('auth/register', { error: `Passwords don't match!` });
+    errors.push("Password don't match!")
   }
   try {
     const userInDB = await User.exists({ username: username });
     if (userInDB != null) {
-      res.render('auth/register', { error: `That username is already taken!`});
-    } else {
+      errors.push('That username is already taken!')
+    }
+    if (errors.length === 0) {
       const salt = await bcrypt.genSalt(saltRounds);
       const hashedPassword = await bcrypt.hash(password, salt);
       const user = await User.create({ username, email, hashedPassword });
       const registration = {registration: 'Registration successful!'};
       res.render('auth/login', registration);
+    }
+    else {
+      res.render('auth/register', {error: errors});
     }
   } catch (error) {
     next(error)

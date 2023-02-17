@@ -1,17 +1,33 @@
 <section id="auth" class="main-section">
   <h1>Register Page  </h1>
+  <div id="register-form">
   <form action="/auth/register" method="POST">
-    <label>Username</label>
-    <input type="text" name="username" placeholder="Username" maxlength="11">
-    <label>Email</label>
-    <input type="text" name="email" placeholder="Email">
-    <label>Password</label>
-    <input type="password" name="password" placeholder="********">
-    <label>Repeat password</label>
-    <input type="password" name="repeatedPassword" placeholder="********">
-    <button type="submit">Register</button>
+    <div class="user-field user-field-edit">
+      <label class="user-info-text">👤 Username</label>
+      <input type="text" name="username" maxlength="11"/>
+    </div>
+    <div class="user-field user-field-edit">
+      <label class="user-info-text">📧 Email</label>
+      <input type="text" name="email"/>
+    </div>   
+    <div class="user-field user-field-edit">
+      <label class="user-info-text">🔐 Password</label>
+      <input type="password" name="password" />
+    </div>
+    <div class="user-field user-field-edit">
+      <label class="user-info-text">🔐 Again</label>
+      <input type="password" name="repeatedPassword" />
+    </div>           
+    <div id="login-container">
+      <button type="submit" id="register-button">Register</button>
+    </div>
   </form>
-  {{#if error}}
-  <h2>{{error}}</h2>
-  {{/if}}
+  </div>
+  <div id="edit-messages-box">
+    {{#if error}}
+    {{#each error}}
+      <h2 class="error-message">❌{{this}}</h2>
+    {{/each}}
+    {{/if}}
+  </div>
 </section>

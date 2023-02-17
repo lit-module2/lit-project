@@ -4,7 +4,7 @@
     <form method="POST" action="/profile/edit" id="edit-form">
       <div class="user-field user-field-edit">
         <label class="user-info-text">👤 Username</label>
-        <input type="text" name="newUsername" placeholder={{user.username}} />
+        <input type="text" name="newUsername" maxlength="11" placeholder={{user.username}} />
       </div>
       <div class="user-field user-field-edit">
         <label class="user-info-text">🔐 Password</label>
@@ -48,10 +48,12 @@
   {{/if}}
     {{#if error}}
     {{#each error}}
-    <h2 class="error-message">❌{{this}}</h2>
+      {{#each this}}
+      <h2 class="error-message">❌{{this}}</h2>
+      {{/each}}
     {{/each}}
+    {{/if}}
   </div>
-  {{/if}}
 </section>
 <script>
   const form = document.getElementById('edit-form');

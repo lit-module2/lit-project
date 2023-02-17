@@ -1,23 +1,30 @@
 <section id="auth" class="main-section">
   <h1>Login</h1>
-  <div>
+  <div class="login-box-container">
     <form action="/auth/login" method="POST">
-  
-      <label>Username</label>
-      <input type="text" name="username" placeholder="maquina" />
-      
-      <label>Password</label>
-      <input type="password" name="password" placeholder="********" />
-      
-      {{#if error}}
-      <p style="color:rgb(218, 90, 90)">{{ error }}</p>
-      {{/if}}
-      
-      <button type="submit">Login</button>
+
+      <div class="user-field user-field-edit">
+        <label class="user-info-text">👤 Username</label>
+        <input type="text" name="username" placeholder="username" />
+      </div>
+      <div class="user-field user-field-edit">
+        <label class="user-info-text">🔐 Password</label>
+        <input type="password" name="password" placeholder="********" />
+      </div>      
+      <div id="login-container">
+        <button type="submit" id="login-button">Login</button>
+      </div>
 
     </form>
   </div>
+  <div id="edit-messages-box">
   {{#if registration}}
-  <h2 class="registration-message">{{registration}}</h2>
+    <h2 class="update-success">✅ Registration successful!</h2>
   {{/if}}
+    {{#if error}}
+    {{#each error}}
+      <h2 class="error-message">❌{{this}}</h2>
+    {{/each}}
+    {{/if}}
+  </div>
 </section>

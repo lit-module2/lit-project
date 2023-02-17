@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Bowlby+One+SC&family=Comfortaa:wght@300;400;500;600;700&display=swap');
 @import url('https://fonts.cdnfonts.com/css/futura-pt');
 
+
 /* http://meyerweb.com/eric/tools/css/reset/ 
    v2.0 | 20110126
    License: none (public domain)
@@ -74,8 +75,6 @@ html {
   --profile-grey:#EBEAEA;
   --profile-lightgrey:#F6F6F6;
 }
-
-/*  Login and register forms */
 
 /* Common styles */
 
@@ -420,15 +419,213 @@ a {
 /* Login and registration styles */
 
 #auth {
+  background-size: cover;
+  background-image: url(/images/question-section-background.svg);
+  animation: image-transition 40s infinite alternate;
+  animation-delay:3000ms;
+}
+
+@keyframes image-transition {
+  0% {
+    background-image: url(/images/question-section-background.svg);
+  }
+  33% {
+    background-image: url(/images/submit-question-section-background.svg);
+  }
+  66% {
+    background-image: url(/images/leaderboard-section-background.svg);
+  }
+  100% {
+    background-image: url(/images/notification-section-background.svg);
+  }
+}
+
+#auth-box-container {
+  background-color: black;
+  padding: 1% 0 5% 0;
+  margin-top: 10%;
+  border-radius: 10px;
+  border-style:none;
+}
+
+#auth-ask {
+  color:var(--primary-pink);
+}
+
+#auth-ask, #auth-ask-text {
+  text-align:left;
+}
+
+#auth-answer {
+  color:var(--primary-yellow);
+}
+
+#auth-answer, #auth-answer-text {
+  text-align:center;
+} 
+
+#auth-admire {
+  color:var(--primary-blue);
+}
+
+#auth-admire, #auth-admire-text {
+  text-align:right;
+}
+
+#auth-ask-text, #auth-answer-text, #auth-admire-text {
+  padding:2%;
+}
+
+#auth-ask-text {
+  background-color: var(--primary-pink);
+}
+
+#auth-answer-text {
   background-color: var(--primary-yellow);
 }
 
-.login-div {
-  background-color: blue;
+#auth-admire-text {
+  background-color: var(--primary-blue);
 }
 
-.login-form {
+.auth-text-container {
+  margin: 5% 0;
+  
+}
+
+#auth-ask-container {
+  margin: 5% 0;
+  transform: translateY(100%);
+  animation: slide-in 1s ease-in forwards;
+}
+
+#auth-answer-container {
+  opacity:0;
+  margin: 5% 0;
+  transform: translateY(100%);
+  animation: slide-in 1s ease-in forwards;
+  animation-delay:500ms;
+}
+
+#auth-admire-container {
+  opacity:0;
+  margin: 5% 0;
+  transform: translateY(100%);
+  animation: slide-in 1s ease-in forwards;
+  animation-delay:1000ms;
+}
+
+.auth-subtitle {
+  font-size:1.2rem;
+  padding: 2%;
+  margin: 0 4%;
+}
+
+.auth-sentence {
+  color:black;
+  font-size:0.8rem;
+  margin: 0 4%;
+  border-radius:5px;
+}
+
+.button-auth-container {
+  padding: 4%;
+  display:flex;
+  flex-direction:column;
   justify-content: center;
+  align-items: center;
+  margin-top:40%;
+}
+
+.auth-button {
+  padding: 3% 4% 3% 4%;
+  background:linear-gradient(black, rgb(70, 70, 70));
+  border-radius:10px;
+  font-family:'Futura PT';
+  color:white;
+  font-size:1rem;
+  width:40vmin;
+  text-align:center;
+  margin-bottom:20%;
+}
+
+#auth-changing-background {
+  position:fixed;
+  left:0;
+  top:0;
+}
+
+.auth-field {
+  color: white;
+  background-color:var(--profile-lightgrey);
+  padding:2%;
+  margin-top: 4%;
+  margin-bottom: 4%;
+  border-radius:10px;
+  border-color:black;
+  border-style:solid;
+  border-width:1px;
+}
+
+.auth-info-text {
+  font-weight:400;
+  color:black;
+  font-size:1.2rem;
+}
+
+.button-auth-container {
+  padding: 4%;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-button {
+  padding: 3% 4% 3% 4%;
+  background:linear-gradient(black, rgb(70, 70, 70));
+  border-radius:10px;
+  font-family:'Futura PT';
+  color:white;
+  font-size:1rem;
+}
+
+/* Login view */
+
+#login-container {
+  padding: 4%;
+  display:flex;
+  flex-direction:column;
+  justify-content: center;
+  align-items: center;
+}
+
+#login-button {
+  padding: 2% 4%;
+  background:linear-gradient(black, rgb(70, 70, 70));
+  border-radius:10px;
+  font-family:'Futura PT';
+  color:white;
+  font-size:1rem;
+}
+
+.login-box-container {
+  margin-top: 70%;
+}
+
+/* Register view */
+
+#register-form {
+  margin-top: 40%;
+}
+
+#register-button {
+  padding: 2% 4%;
+  background:linear-gradient(black, rgb(70, 70, 70));
+  border-radius:10px;
+  font-family:'Futura PT';
+  color:white;
+  font-size:1rem;
 }
 
 /* Question menu styles */
@@ -439,13 +636,16 @@ a {
 }
 
 #question-container {
-  max-width: 90%;
+  max-width: 100%;
   margin: 15% auto;
   text-align:center;
 }
 
 .question-menu-text {
   font-size:1.6rem;
+  background-color:rgba(255,255,255,0.3);
+  border-radius:10px;
+  padding:2%;
 }
 
 .question-emoji {
@@ -845,9 +1045,11 @@ input:focus {
   font-size: 0.8rem;
   font-family: 'Futura PT';
   animation: fade-out 2s linear forwards;
-  animation-delay:4000ms;
+  animation-delay:5000ms;
   text-align:justify;
-  max-width: 80vmin;
+  width: 75vw;
+  padding:1%;
+  margin:1% 0;
 }
 
 .question-container {
