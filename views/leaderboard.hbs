@@ -5,20 +5,6 @@
     <h1>Leaderboard</h1>
     {{/if}}
 
-    <div class="leaderboard-category-selector">
-        <form action="/leaderboard/category" method="GET">
-            <label>Pick a category!</label>
-            <select name="category">
-                <option value="" disabled selected hidden>...</option>
-                <option value="Baldness">Baldness</option>
-                <option value="Attractiveness">Attractiveness</option>
-                <option value="Style">Style</option>
-                <option value="Programming skills">Programming Skills</option>
-            </select>
-            <button type="submit">Check leaderboard</button>
-        </form>
-    </div>
-
     {{#if data}}
     <section class="bar-graph bar-graph-vertical bar-graph-two">
     <div class="bar-three bar-container">
@@ -35,4 +21,20 @@
     </div>
     </section>
     {{/if}}
+
+    <div class="leaderboard-category-selector">
+        <form action="/leaderboard/category" method="GET">
+            <select name="category" id="leaderboard-option-selector">
+                <option value="Baldness" disabled selected hidden>Pick a category</option>
+                <option value="Baldness">Baldness</option>
+                <option value="Attractiveness">Attractiveness</option>
+                <option value="Style">Style</option>
+                <option value="Programming skills">Programming Skills</option>
+            </select>
+            <br>
+            <div id="login-container">
+                <button type="submit" id="login-button">Check leaderboard</button>
+            </div>
+        </form>
+    </div>
 </section>
