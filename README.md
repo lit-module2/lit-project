@@ -207,7 +207,7 @@ const userAnswerSchema = new Schema(
 | Leaderboard | GET | /leaderboard?category={query}   | Users only | |          |
 | Notifications | GET | /notifications   | Users only | |          |
 | Admin | GET | /admin   | Admin only | |          |
-| Admin | POST | /admin/:questionId   | Admin only | | { approval }          |
+| Admin | POST | /admin/:questionId   | Admin only |  { approval }   |       |
 
 ---
 
