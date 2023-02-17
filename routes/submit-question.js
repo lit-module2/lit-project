@@ -16,14 +16,20 @@ router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
 // @access  User with user role only
 router.post('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
     const { emoji, question, category, effectCheck, safeCheck } = req.body;
-    let effect = false;
-    let safe = false;
+    let effect;
+    let safe;
     let errors = [];
     if (effectCheck === 'on') {
         effect = true;
     }
+    else {
+        effect = false;
+    }
     if (safeCheck === 'on') {
         safe = true;
+    }
+    else {
+        effect = false
     }
     const regexEmoji = /\p{Extended_Pictographic}/ug;
     if (!regexEmoji.test(emoji)) {

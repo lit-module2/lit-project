@@ -731,6 +731,7 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
+  gap:10%;
 }
 
 .bar-container {
@@ -770,6 +771,7 @@ a {
 .user {
   margin-top: 50vmin;
   text-align:center;
+  font-size:0.9rem;
 }
 
 .bar-graph-two .bar::after {

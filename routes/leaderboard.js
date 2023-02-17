@@ -18,10 +18,12 @@ router.get('/', routeProtect.isUserLoggedIn, async (req, res, next) => {
 router.get('/category', routeProtect.isUserLoggedIn, async (req, res, next) => {
     // we query all user answers and then filter out the answers to questions that belong to the queried category
     const { category } = req.query;
+    console.log(category);
     try {
         const actions = await UserAnswer.find({}).populate('questionId');
         const actionsByCategory = actions.filter(action => ((action.questionId.category === category)));
         const users = await User.find({role: "user"});
+        
         // this part calculates the score for every user in a given category
         let scores = [];
         for (let user of users) {
@@ -40,10 +42,11 @@ router.get('/category', routeProtect.isUserLoggedIn, async (req, res, next) => {
         scores.push({user: user.username, score: userScore});
         }
         scores = scores.sort((a, b) => b.score - a.score);
+        console.log(scores);
         res.render('leaderboard', {data: scores, category: category});
     }
     catch (error) {
-        res.render('leaderboard');
+        res.render('error');
     }
 })
 
