@@ -6,7 +6,7 @@
 
             <div class="user-field user-field-edit">
                 <label class="user-info-text" id="submit-question-emoji">Emoji</label>
-                <input id="submit-question-emoji-input" class="emoji-input" type="text" pattern="/\p{Extended_Pictographic}/u" name="emoji">
+                <input id="submit-question-emoji-input" class="emoji-input" type="text" name="emoji">
             </div>
             <div class="user-field user-field-edit">
                 <label class="user-info-text" id="submit-question-question-text">Question</label>
@@ -39,6 +39,9 @@
         </form>
     </div>
     <div id="edit-messages-box">
+    {{#if success}}
+        <h2 class="update-success">✅ Question submitted!</h2>
+    {{/if}}
     {{#if error}}
     {{#each error}}
       <h2 class="error-message">❌{{this}}</h2>
