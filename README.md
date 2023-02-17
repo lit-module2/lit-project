@@ -200,14 +200,14 @@ const userAnswerSchema = new Schema(
 | Logout | POST    | /profile/logout | Users only |  |           |
 | Delete | POST | /profile/delete   | Users only | |          |
 | Question | GET | /question   | Users only | |          |
-| Question | POST | /question/:questionId  | Users only | |          |
+| Question | POST | /question/:questionId  | Users only | { possibleAnswers, userAnswered } |           |
 | Submit Question | GET | /submit-question   | Users only | |          |
 | Submit Question | POST | /submit-question   | Users only | { emoji, question, category, effectCheck, safeCheck } |         |
 | Leaderboard | GET | /leaderboard   | Users only | |          |
 | Leaderboard | GET | /leaderboard?category={query}   | Users only | |          |
 | Notifications | GET | /notifications   | Users only | |          |
 | Admin | GET | /admin   | Admin only | |          |
-| Admin | POST | /admin/:questionId   | Admin only | |          |
+| Admin | POST | /admin/:questionId   | Admin only | | { approval }          |
 
 ---
 
