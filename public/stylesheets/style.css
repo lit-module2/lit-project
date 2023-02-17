@@ -643,7 +643,7 @@ a {
 
 .question-menu-text {
   font-size:1.6rem;
-  background-color:rgba(255,255,255,0.3);
+  background-color:rgba(255,255,255,0.5);
   border-radius:10px;
   padding:2%;
 }
@@ -862,6 +862,62 @@ a {
   background-size: cover;
 }
 
+#submit-question-option-selector {
+  background-color:rgba(255,255,255,0.6);
+  border-width:0;
+  border-radius:5px;
+  font-family:'Futura PT';
+  font-size:1.2rem;
+  padding:1%;
+  font-weight:500;
+  width:100%;
+  text-align:center;
+}
+
+#submit-question-check-field > label {
+  width: 65vmin;
+}
+
+#submit-question-emoji, #submit-question-question-text {
+  font-size:1.5rem;
+}
+
+#submit-question-emoji-input {
+  width: 10vmin;
+  text-align: center;
+  opacity:1;
+  font-size:1.5rem;
+}
+
+#question-input {
+  height:20vmin;
+  width:97%;
+}
+
+textarea {
+  margin-top:2%;
+  padding: 1%;
+  border-radius: 5px;
+  border:none;
+  opacity:0.5;
+  background-color:white;
+  font-size:1rem;
+  font-family:'Futura PT';
+  font-weight:500;
+  font-style:italic;
+}
+
+textarea:focus {
+  opacity:1;
+  background-color:white;
+}
+
+input[type=checkbox] {
+  opacity:1;
+  background-color:var(--primary-pink);
+  height:5vmin;
+  width:5vmin;
+}
 
 /* Notifications menu styles */
 
@@ -1101,5 +1157,3 @@ input:focus {
   font-size: 0.8rem;
   border-radius: 5px;
 }
-
-
