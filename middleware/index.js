@@ -16,14 +16,24 @@ function isUserLoggedIn (req, res, next) {
 
 function isAdminLoggedIn (req, res, next) {
     if (req.session.currentUser && req.session.currentUser.role === 'admin') {
-        next()
+        next();
     } else {
-        res.redirect('/')
+        res.redirect('/');
+    }
+}
+
+function isNotLoggedIn (req, res, next) {
+    if (req.session.currentUser) {
+        res.redirect('/');
+    }
+    else {
+        next();
     }
 }
 
 module.exports = {
     isLoggedIn,
     isUserLoggedIn,
-    isAdminLoggedIn
+    isAdminLoggedIn,
+    isNotLoggedIn
 };  

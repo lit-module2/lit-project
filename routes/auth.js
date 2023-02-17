@@ -7,22 +7,15 @@ const routeProtect = require('../middleware/index');
 
 // @desc    Displays login view
 // @route   GET /auth/
-// @access  Public
-router.get('/', (req, res, next) => {
+// @access  Non-users only
+router.get('/', routeProtect.isNotLoggedIn, (req, res, next) => {
   res.render('auth/index');
 })
 
 // @desc    Displays login view
 // @route   GET /auth/login
-// @access  Public
-router.get('/', (req, res, next) => {
-  res.render('auth/index');
-})
-
-// @desc    Displays login view
-// @route   GET /auth/login
-// @access  Public
-router.get('/login', (req, res, next) => {
+// @access  Non-users only
+router.get('/login', routeProtect.isNotLoggedIn, (req, res, next) => {
   res.render('auth/login');
 })
 
@@ -66,7 +59,7 @@ router.post("/login", async function (req, res, next) {
 // @desc    Displays the register page and form
 // @route   GET /auth/signup
 // @access  Public
-router.get ("/register", (req, res, next) => {
+router.get ("/register", routeProtect.isNotLoggedIn, (req, res, next) => {
   res.render("auth/register")
 })
 
@@ -83,7 +76,6 @@ router.post ("/register", async (req, res, next) => {
   const regexPassword = /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}/;
   if (!regexPassword.test(password)) {
     res.render('auth/register', { error: 'Password needs to contain at least 6 characters, one number, one lowercase and one uppercase letter.' });
-    return;
   }
   const salt = await bcrypt.genSalt(saltRounds);
   const hashedFirstPassword = await bcrypt.hash(password, salt);
@@ -92,10 +84,9 @@ router.post ("/register", async (req, res, next) => {
     res.render('auth/register', { error: `Passwords don't match!` });
   }
   try {
-    const userInDB = await User.findOne({ username: username });
-    if (userInDB) {
-      res.render('auth/login', { error: `There already is a user with username ${username}` });
-      return;
+    const userInDB = await User.exists({ username: username });
+    if (userInDB != null) {
+      res.render('auth/register', { error: `That username is already taken!`});
     } else {
       const salt = await bcrypt.genSalt(saltRounds);
       const hashedPassword = await bcrypt.hash(password, salt);
