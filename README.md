@@ -216,4 +216,4 @@ const userAnswerSchema = new Schema(
 - [Github Repo](https://github.com/lit-module2/lit-project)
 - [Trello kanban](https://trello.com/b/fg3dg6qD/lit-modulo2)
 - [Deployed version]()
-- [Presentation slides](https://slides.com/albertomenendezrodriguez/lite/edit)
+- [Presentation slides](https://slides.com/albertomenendezrodriguez/lite/)
